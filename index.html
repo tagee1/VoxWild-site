@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTS Studio — AI Text to Speech for Windows</title>
+  <meta name="description" content="Professional AI text-to-speech for Windows. Two engines, voice cloning, one-time purchase. No subscription. No cloud. Yours forever." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TTS Studio — AI Text to Speech for Windows" />
+  <meta property="og:description" content="Two AI voices. Voice cloning. No subscription. One-time purchase." />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/x-icon" href="logo.png" />
+
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #171717;
+      --card:      #1f1f1f;
+      --elevated:  #2a2a2a;
+      --border:    #383838;
+      --accent:    #e8940a;
+      --accent-h:  #f5aa2a;
+      --accent-d:  #3d2200;
+      --txt:       #f0ece4;
+      --txt2:      #9a9290;
+      --txt3:      #4e4a48;
+      --danger:    #f87171;
+      --green:     #4ade80;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--txt);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-h); }
+
+    img { max-width: 100%; display: block; }
+
+    /* ── Layout helpers ───────────────────────────────────────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: 96px 0; }
+    .section--tight { padding: 64px 0; }
+
+    /* ── Nav ──────────────────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--txt);
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--txt2);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .15s;
+    }
+
+    .nav-links a:hover { color: var(--txt); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .15s, transform .1s;
+      border: none;
+      text-decoration: none;
+    }
+
+    .btn:active { transform: scale(.97); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+    .btn-primary:hover { background: var(--accent-h); color: #000; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--txt2);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--elevated); color: var(--txt); }
+
+    .btn-lg {
+      padding: 14px 32px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(232,148,10,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 0 auto 32px;
+      box-shadow: 0 0 48px rgba(232,148,10,.3);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--accent-d);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(232,148,10,.3);
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.12;
+      margin-bottom: 20px;
+      letter-spacing: -.02em;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: var(--txt2);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--txt3);
+    }
+
+    /* ── Social proof strip ───────────────────────────────────────────────── */
+    .proof-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      padding: 20px 0;
+    }
+
+    .proof-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--txt2);
+    }
+
+    .proof-item .icon { color: var(--accent); font-size: 16px; }
+
+    /* ── Features ─────────────────────────────────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: border-color .2s, transform .2s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(232,148,10,.4);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--txt);
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--txt2);
+      line-height: 1.6;
+    }
+
+    /* ── Engines comparison ───────────────────────────────────────────────── */
+    .engines {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) { .engines { grid-template-columns: 1fr; } }
+
+    .engine-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 32px;
+    }
+
+    .engine-card.featured {
+      border-color: rgba(232,148,10,.5);
+      background: linear-gradient(135deg, #1f1f1f 0%, #1a1200 100%);
+    }
+
+    .engine-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .badge-fast { background: rgba(74,222,128,.15); color: var(--green); border: 1px solid rgba(74,222,128,.3); }
+    .badge-natural { background: var(--accent-d); color: var(--accent); border: 1px solid rgba(232,148,10,.3); }
+
+    .engine-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .engine-card p { font-size: 14px; color: var(--txt2); margin-bottom: 20px; }
+
+    .engine-specs { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .engine-specs li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--txt2);
+    }
+
+    .engine-specs li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Pricing ──────────────────────────────────────────────────────────── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      position: relative;
+    }
+
+    .price-card.popular {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #1f1f1f 0%, #1a1200 100%);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .price-tier { font-size: 13px; font-weight: 700; color: var(--txt2); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; }
+
+    .price-amount {
+      display: flex;
+      align-items: flex-start;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .price-currency { font-size: 20px; font-weight: 700; color: var(--txt2); margin-top: 8px; }
+    .price-number { font-size: 56px; font-weight: 800; line-height: 1; color: var(--txt); }
+    .price-was { font-size: 13px; color: var(--txt3); text-decoration: line-through; margin-bottom: 4px; }
+    .price-launch { font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 20px; }
+
+    .price-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--txt2);
+    }
+
+    .price-features li .check { color: var(--accent); flex-shrink: 0; font-weight: 700; margin-top: 1px; }
+
+    .price-card .btn { width: 100%; justify-content: center; }
+
+    /* ── FAQ ──────────────────────────────────────────────────────────────── */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--txt);
+      font-size: 15px;
+      font-weight: 600;
+      text-align: left;
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: inherit;
+    }
+
+    .faq-q .arrow { color: var(--accent); font-size: 18px; transition: transform .2s; flex-shrink: 0; }
+    .faq-item.open .arrow { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      font-size: 14px;
+      color: var(--txt2);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA banner ───────────────────────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, #1a1200 0%, #0d0d0d 60%);
+      border: 1px solid rgba(232,148,10,.3);
+      border-radius: 20px;
+      padding: 64px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232,148,10,.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-banner h2 { font-size: clamp(24px, 4vw, 40px); font-weight: 800; margin-bottom: 12px; }
+    .cta-banner p { color: var(--txt2); margin-bottom: 32px; font-size: 16px; }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--txt2);
+    }
+
+    .footer-brand img { width: 28px; height: 28px; border-radius: 50%; }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a { font-size: 13px; color: var(--txt3); }
+    .footer-links a:hover { color: var(--txt2); }
+
+    .footer-copy { font-size: 13px; color: var(--txt3); }
+
+    /* ── Section headings ─────────────────────────────────────────────────── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--txt2);
+      max-width: 560px;
+    }
+
+    .section-header { margin-bottom: 52px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ── Divider ──────────────────────────────────────────────────────────── */
+    .divider { height: 1px; background: var(--border); }
+
+    /* ── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .section { padding: 64px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ── NAV ────────────────────────────────────────────────────────────────── -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <img src="logo.png" alt="TTS Studio logo" />
+        TTS Studio
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#engines">Engines</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="mailto:support@cookiestudios.dev">Support</a></li>
+      </ul>
+      <a href="#pricing" class="btn btn-primary">Buy Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <img src="logo.png" alt="TTS Studio" class="hero-logo" />
+    <div class="hero-eyebrow">Windows Desktop App · One-Time Purchase</div>
+    <h1>Text to Speech that<br/><span>actually sounds human.</span></h1>
+    <p class="hero-sub">
+      Two AI engines. Voice cloning. Audio cleanup. MP3 export.
+      No subscription, no cloud, no monthly bill — yours forever.
+    </p>
+    <div class="hero-ctas">
+      <a href="#pricing" class="btn btn-primary btn-lg">Get TTS Studio — from $24</a>
+      <a href="#features" class="btn btn-ghost btn-lg">See what's included</a>
+    </div>
+    <p class="hero-note">Windows 10/11 · Runs 100% offline · Instant download after purchase</p>
+  </div>
+</section>
+
+<!-- ── PROOF STRIP ─────────────────────────────────────────────────────────── -->
+<div class="proof-strip">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="proof-item"><span class="icon">✓</span> No subscription ever</div>
+      <div class="proof-item"><span class="icon">✓</span> Runs fully offline</div>
+      <div class="proof-item"><span class="icon">✓</span> Voice cloning included</div>
+      <div class="proof-item"><span class="icon">✓</span> MP3 + WAV + SRT export</div>
+      <div class="proof-item"><span class="icon">✓</span> Instant download</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ENGINES ────────────────────────────────────────────────────────────── -->
+<section class="section" id="engines">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Two AI Engines</div>
+      <h2 class="section-title">Fast when you need it.<br/>Natural when it matters.</h2>
+      <p class="section-sub">Switch between engines instantly. Both run locally — no internet required after setup.</p>
+    </div>
+    <div class="engines">
+      <div class="engine-card">
+        <div class="engine-badge badge-fast">⚡ Fast Mode</div>
+        <h3>Kokoro ONNX</h3>
+        <p>Instant generation. Great for long documents, batch processing, and quick previews. Dozens of voices included.</p>
+        <ul class="engine-specs">
+          <li>Generates audio in under a second</li>
+          <li>30+ built-in voices (US, UK, accents)</li>
+          <li>Handles any length of text</li>
+          <li>Zero internet required</li>
+          <li>Custom pronunciation dictionary</li>
+        </ul>
+      </div>
+      <div class="engine-card featured">
+        <div class="engine-badge badge-natural">✨ Natural Mode</div>
+        <h3>Chatterbox AI</h3>
+        <p>The most human-sounding TTS you've heard on a desktop. Powered by Resemble AI's Chatterbox model.</p>
+        <ul class="engine-specs">
+          <li>Stunningly natural prosody and emotion</li>
+          <li>Voice cloning from any audio sample</li>
+          <li>AI watermark included for authenticity</li>
+          <li>AI audio cleanup and enhancement</li>
+          <li>Downloaded once, runs offline forever</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FEATURES ───────────────────────────────────────────────────────────── -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Everything Included</div>
+      <h2 class="section-title">A complete TTS studio.<br/>Not a toy.</h2>
+      <p class="section-sub">Every feature ships in the base price. No upsells, no locked tiers.</p>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon">🎙️</div>
+        <h3>Voice Cloning</h3>
+        <p>Record 10 seconds of anyone's voice — including your own — and Natural mode will match it. Build a personal library of cloned voices.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🧹</div>
+        <h3>AI Audio Cleanup</h3>
+        <p>One-click enhancement chain: noise reduction, high-pass filter, compression, and gain. Every export sounds studio-ready.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3>Queue & Batch Export</h3>
+        <p>Drop in a full script, split by speaker or chapter, and generate everything in one run. Results saved to your history automatically.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>MP3, WAV & SRT Export</h3>
+        <p>Export as WAV, encode to MP3 with custom bitrate and ID3 metadata, or export a properly timed SRT subtitle file.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Persistent History</h3>
+        <p>Every generation is saved to your local history — audio file included. Replay, re-export, or enhance old recordings anytime.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Pronunciation Dictionary</h3>
+        <p>Tell TTS Studio how to say your brand name, technical terms, or abbreviations. Rules are applied automatically on every generation.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🎛️</div>
+        <h3>Audio Enhancement Controls</h3>
+        <p>Fine-tune reverb, compression, high-pass, noise gate, and gain per voice profile. Save profiles for reuse across projects.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Runs 100% Offline</h3>
+        <p>After the one-time model download, nothing phones home. Your text, your voice, your audio — all stays on your machine.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <h3>Completion Notifications</h3>
+        <p>Walk away while long scripts generate. Windows toast notification pings you when it's done.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PRICING ────────────────────────────────────────────────────────────── -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">One price. Yours forever.</h2>
+      <p class="section-sub">Launch week discount — limited time. No renewals, no seats, no nonsense.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="price-card">
+        <div class="price-tier">Personal</div>
+        <div class="price-was">$34</div>
+        <div class="price-amount">
+          <span class="price-currency">$</span>
+          <span class="price-number">24</span>
+        </div>
+        <div class="price-launch">🚀 Launch week price</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Both Fast &amp; Natural engines</li>
+          <li><span class="check">✓</span> Voice cloning library</li>
+          <li><span class="check">✓</span> AI audio cleanup</li>
+          <li><span class="check">✓</span> MP3, WAV &amp; SRT export</li>
+          <li><span class="check">✓</span> Persistent history</li>
+          <li><span class="check">✓</span> 1 machine activation</li>
+          <li><span class="check">✓</span> All future updates</li>
+          <li><span class="check">✓</span> Personal use only</li>
+        </ul>
+        <a href="YOUR_LS_PERSONAL_URL" class="btn btn-ghost btn-lg">Buy Personal</a>
+      </div>
+
+      <div class="price-card popular">
+        <div class="popular-tag">Most Popular</div>
+        <div class="price-tier">Commercial</div>
+        <div class="price-was">$69</div>
+        <div class="price-amount">
+          <span class="price-currency">$</span>
+          <span class="price-number">49</span>
+        </div>
+        <div class="price-launch">🚀 Launch week price</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li><span class="check">✓</span> Everything in Personal</li>
+          <li><span class="check">✓</span> Use in commercial projects</li>
+          <li><span class="check">✓</span> Client work &amp; content creation</li>
+          <li><span class="check">✓</span> Podcasts, YouTube, audiobooks</li>
+          <li><span class="check">✓</span> 2 machine activations</li>
+          <li><span class="check">✓</span> Priority support</li>
+          <li><span class="check">✓</span> All future updates</li>
+        </ul>
+        <a href="YOUR_LS_COMMERCIAL_URL" class="btn btn-primary btn-lg">Buy Commercial</a>
+      </div>
+
+    </div>
+
+    <p style="text-align:center; margin-top:24px; font-size:13px; color:var(--txt3);">
+      Secure checkout via Lemon Squeezy · Instant download · 30-day money-back guarantee
+    </p>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FAQ ────────────────────────────────────────────────────────────────── -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions answered.</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">Does it work offline? <span class="arrow">▾</span></button>
+        <div class="faq-a">Yes. Fast mode works immediately with no internet. Natural mode downloads the AI model (~3 GB) once on first use, then runs fully offline forever.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What Windows versions are supported? <span class="arrow">▾</span></button>
+        <div class="faq-a">Windows 10 and Windows 11, 64-bit. No Python or extra software needed — everything is bundled in the installer.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Is there a subscription or renewal fee? <span class="arrow">▾</span></button>
+        <div class="faq-a">Never. You pay once and own it forever, including all future updates to your major version.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What is voice cloning and how does it work? <span class="arrow">▾</span></button>
+        <div class="faq-a">Voice cloning lets Natural mode mimic any voice from a short audio sample (10–30 seconds works great). Record yourself, a client's voice, or use an existing audio clip. The cloned voice is saved to your personal library.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I use it for commercial content? <span class="arrow">▾</span></button>
+        <div class="faq-a">The Commercial license covers YouTube videos, podcasts, audiobooks, client work, and other commercial projects. The Personal license is for private, non-commercial use only.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What is the AI watermark in Natural mode? <span class="arrow">▾</span></button>
+        <div class="faq-a">Natural mode uses Resemble AI's Chatterbox engine which embeds an inaudible neural watermark (via the Perth library) in all generated audio. This helps establish the audio as AI-generated. It does not affect audio quality and is industry best practice for responsible AI.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Can I move my license to a new PC? <span class="arrow">▾</span></button>
+        <div class="faq-a">Yes. You can deactivate from the old machine inside the app (Settings → License → Deactivate) and activate on the new one. Personal gets 1 active machine, Commercial gets 2.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">What's the refund policy? <span class="arrow">▾</span></button>
+        <div class="faq-a">30-day money-back guarantee, no questions asked. Contact support@cookiestudios.dev and we'll sort it out the same day.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ─────────────────────────────────────────────────────────── -->
+<section class="section--tight">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Stop paying monthly for TTS.</h2>
+      <p>Pay once. Keep it forever. Launch week pricing won't last.</p>
+      <a href="#pricing" class="btn btn-primary btn-lg">Get TTS Studio Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="logo.png" alt="TTS Studio" />
+        TTS Studio by Cookie Studios
+      </div>
+      <ul class="footer-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="mailto:support@cookiestudios.dev">Support</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="eula.html">EULA</a></li>
+      </ul>
+      <div class="footer-copy">© 2026 Cookie Studios. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FAQ accordion ──────────────────────────────────────────────────────── -->
+<script>
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
