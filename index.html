@@ -46,7 +46,11 @@
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(0, 217, 139, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0, 217, 139, 0.05) 0%, transparent 60%),
+        var(--bg);
+      background-attachment: fixed;
       color: var(--txt);
       font-family: var(--font-sans);
       font-size: 16px;
@@ -179,30 +183,75 @@
       .nav-links li:not(:last-child) { display: none; }
     }
 
-    /* ─── Buttons ─────────────────────────────────────────────────────────── */
+    /* ─── Buttons (glossy) ────────────────────────────────────────────────── */
     .btn {
+      position: relative;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 12px 20px;
-      background: var(--accent);
-      color: var(--bg);
+      background: linear-gradient(180deg, #0ee39a 0%, #00c97e 100%);
+      color: #062018;
       font-family: var(--font-sans);
       font-size: 14px;
       font-weight: 600;
-      border: 1px solid var(--accent);
-      border-radius: 4px;
+      border: 1px solid rgba(0, 200, 130, 0.6);
+      border-radius: 5px;
       cursor: pointer;
-      transition: background 0.15s, border-color 0.15s;
+      transition: filter 0.18s, box-shadow 0.18s, transform 0.08s;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(0, 217, 139, 0.25);
+      overflow: hidden;
+      isolation: isolate;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
     }
-    .btn:hover { background: var(--accent-h); border-color: var(--accent-h); color: var(--bg); border-bottom-color: var(--accent-h); }
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .btn > * { position: relative; z-index: 1; }
+    .btn:hover {
+      filter: brightness(1.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.15),
+        0 4px 14px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(0, 217, 139, 0.55);
+      color: #062018;
+      border-bottom-color: rgba(0, 200, 130, 0.6);
+    }
+    .btn:active { transform: translateY(1px); }
     .btn-lg { padding: 16px 28px; font-size: 15px; }
     .btn-ghost {
-      background: transparent;
+      background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
       color: var(--txt);
       border: 1px solid var(--border);
+      text-shadow: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 2px 4px rgba(0, 0, 0, 0.2);
     }
-    .btn-ghost:hover { background: var(--surface); color: var(--txt); border-color: var(--txt3); }
+    .btn-ghost::before {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+    }
+    .btn-ghost:hover {
+      background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
+      color: var(--txt);
+      border-color: rgba(0, 217, 139, 0.4);
+      filter: none;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        0 4px 10px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 217, 139, 0.15);
+    }
     .btn-text {
       color: var(--accent);
       font-family: var(--font-mono);
@@ -245,7 +294,11 @@
     .strike {
       position: relative;
       display: inline-block;
-      color: var(--accent);
+      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 28px rgba(0, 217, 139, 0.45));
     }
     .strike::after {
       content: "";
@@ -254,9 +307,10 @@
       right: -2%;
       top: 56%;
       height: 0.09em;
-      background: var(--accent);
+      background: linear-gradient(90deg, transparent, var(--accent) 15%, var(--accent-h) 50%, var(--accent) 85%, transparent);
       transform: rotate(-2deg);
       border-radius: 2px;
+      box-shadow: 0 0 12px rgba(0, 217, 139, 0.6);
     }
 
     .hero-sub {
@@ -289,10 +343,27 @@
       height: 320px;
     }
     .hero-visual .bar {
+      position: relative;
       width: 18px;
-      background: var(--accent);
-      border-radius: 2px;
+      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 50%, #00a36a 100%);
+      border-radius: 3px;
       animation: bar-breathe 3.2s ease-in-out infinite;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
+        0 0 30px rgba(0, 217, 139, 0.45),
+        0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+    .hero-visual .bar::before {
+      content: "";
+      position: absolute;
+      top: 6%;
+      left: 22%;
+      right: 22%;
+      height: 28%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 1px;
+      filter: blur(0.5px);
     }
     .hero-visual .bar:nth-child(1) { height: 34%; animation-delay: 0.0s;  }
     .hero-visual .bar:nth-child(2) { height: 62%; animation-delay: 0.25s; }
@@ -322,7 +393,14 @@
       color: var(--txt);
       max-width: 18ch;
     }
-    .wedge-text .hl { color: var(--accent); white-space: nowrap; }
+    .wedge-text .hl {
+      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+      filter: drop-shadow(0 0 24px rgba(0, 217, 139, 0.35));
+    }
     .wedge-text .low { color: var(--txt3); }
     .wedge-foot {
       margin-top: 32px;
@@ -343,8 +421,15 @@
     }
     .engine {
       padding: 40px;
-      background: var(--surface);
+      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
       position: relative;
+    }
+    .engine::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.3), transparent);
     }
     .engine + .engine { border-left: 1px solid var(--border); }
     @media (max-width: 780px) {
@@ -407,11 +492,15 @@
     }
 
     .compare-wrap {
+      position: relative;
       overflow-x: auto;
       border: 1px solid var(--border);
       border-radius: 2px;
       margin-bottom: 48px;
-      background: var(--surface);
+      background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03),
+        0 8px 28px rgba(0, 0, 0, 0.4);
     }
     table.compare {
       width: 100%;
@@ -437,8 +526,17 @@
       border-bottom: 1px solid var(--border);
     }
     table.compare td { color: var(--txt2); }
-    table.compare td.me { color: var(--accent); font-weight: 600; background: rgba(0, 217, 139, 0.05); }
-    table.compare th.me { color: var(--accent); background: rgba(0, 217, 139, 0.05); }
+    table.compare td.me {
+      color: var(--accent);
+      font-weight: 600;
+      background: linear-gradient(180deg, rgba(0, 217, 139, 0.09) 0%, rgba(0, 217, 139, 0.04) 100%);
+    }
+    table.compare th.me {
+      color: var(--accent);
+      background: linear-gradient(180deg, rgba(0, 217, 139, 0.12) 0%, rgba(0, 217, 139, 0.05) 100%);
+      box-shadow: inset 0 1px 0 rgba(0, 217, 139, 0.3);
+      text-shadow: 0 0 16px rgba(0, 217, 139, 0.35);
+    }
     table.compare tr:last-child td { border-bottom: none; }
     table.compare .lose { color: var(--danger); }
     table.compare .row-label { color: var(--txt); font-weight: 500; }
@@ -453,7 +551,19 @@
       overflow: hidden;
       background: var(--surface);
     }
-    .buy-strip > div { padding: 28px 28px 24px; border-right: 1px solid var(--border); }
+    .buy-strip > div {
+      position: relative;
+      padding: 28px 28px 24px;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
+    }
+    .buy-strip > div::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    }
     .buy-strip > div:last-child { border-right: none; }
     .buy-tier { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 12px; }
     .buy-price { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
@@ -461,7 +571,13 @@
     .buy-note { font-size: 13px; color: var(--txt2); margin-bottom: 20px; }
     .buy-recommended .buy-tier { color: var(--accent); }
     .buy-recommended {
-      background: linear-gradient(180deg, rgba(0, 217, 139, 0.06) 0%, transparent 100%);
+      background:
+        linear-gradient(180deg, rgba(0, 217, 139, 0.10) 0%, rgba(0, 217, 139, 0.02) 50%, #161616 100%) !important;
+      box-shadow: inset 0 0 60px rgba(0, 217, 139, 0.08);
+    }
+    .buy-recommended::before {
+      height: 2px !important;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.6), transparent) !important;
     }
     .buy-pick {
       font-family: var(--font-mono);
@@ -509,15 +625,26 @@
     }
 
     .tech-specs {
+      position: relative;
       margin-top: 48px;
       padding: 24px 28px;
-      background: var(--surface);
+      background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
       border: 1px solid var(--border);
       border-radius: 2px;
       font-family: var(--font-mono);
       font-size: 13px;
       color: var(--txt2);
       line-height: 1.9;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+    .tech-specs::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.25), transparent);
     }
     .tech-specs .k { color: var(--txt3); display: inline-block; min-width: 140px; }
     .tech-specs .v { color: var(--txt); }
@@ -719,11 +846,11 @@
         <h1>
           Offline text-to-speech<br />
           that doesn't sound like<br />
-          a robot or a <span class="strike">subscription</span>.
+          <span class="strike">a robot</span>.
         </h1>
 
         <p class="hero-sub">
-          A Windows desktop app with 13 built-in voices, voice cloning from a 6-second sample, AI enhancement, and queue-based batch generation. Fast mode is free forever. Natural mode and cloning unlock for <strong>$89 once</strong>.
+          A Windows desktop app with 13 built-in voices, voice cloning from a 6-second sample, AI enhancement, and queue-based batch generation. Fast mode is <strong>free forever</strong>. Pro unlocks everything else — <strong>$12/mo</strong> or <strong>$89 once</strong>, your call.
         </p>
 
         <div class="hero-cta">
@@ -750,9 +877,9 @@
   <section class="wedge">
     <div class="container">
       <div class="wedge-text">
-        ElevenLabs charges <span class="hl">$22 a month</span>.<br />
-        I charge <span class="hl">$0</span> for Fast mode<br />
-        and <span class="hl">$89 once</span> for everything else. <span class="low">Stop renting voices.</span>
+        ElevenLabs: <span class="hl">$22/month</span>. Forever.<br />
+        VoxWild: <span class="hl">$0</span>, <span class="hl">$12/mo</span>, or <span class="hl">$89 once</span>.<br />
+        <span class="low">You pick the plan.</span>
       </div>
       <p class="wedge-foot">
         <a href="#pricing">See the full comparison ↓</a>
@@ -818,7 +945,7 @@
         <div class="eyebrow">Pricing</div>
         <h2>Vs. everyone else.</h2>
         <div class="pricing-intro">
-          "I don't want you to pay me every month. I want you to pay me once and have this for the rest of your life."
+          Three ways to pay, one app. Free if Fast mode is enough. Monthly if you want flexibility. Lifetime if you're in for the long haul.
         </div>
       </div>
 
@@ -1006,17 +1133,17 @@
 
       <div class="manifesto">
         <p>
-          I'm Tage. I started building VoxWild in early 2026 because I wanted narration for a project of mine and the only decent options wanted $22 a month, forever, to rent me the same voices that run fine on a regular laptop.
+          We're Cookie Studios — a small independent team building desktop software that respects your computer and your wallet.
         </p>
         <p>
-          A few weeks in, it was clear nobody had shipped a proper desktop wrapper around Kokoro and Chatterbox — two genuinely great open-source speech models. So I built one. Then I kept building, because every time I used it I noticed something else it needed.
+          VoxWild started in early 2026 because the decent AI text-to-speech options all wanted $22+ a month to rent voices that run fine on a laptop. Nobody had shipped a proper desktop wrapper around Kokoro and Chatterbox — two genuinely great open-source speech models. So we built one. Then we kept building, because every time we used it we noticed something else it needed.
         </p>
         <p>
-          It's one person's tool. If something breaks, I'm the person who fixes it. If you hit a bug or want a feature, email me — I reply within a day, usually within an hour on weekdays. I don't outsource support and I'm not going to disappear.
+          We're small enough that support goes straight to a person who knows the code. Email us if something breaks or you want a feature — we reply within a day, usually within an hour on weekdays.
         </p>
 
         <div class="signoff">
-          — Tage, Cookie Studios<br />
+          — Cookie Studios<br />
           <a href="mailto:cookiestudios.dev@gmail.com">cookiestudios.dev@gmail.com</a>
         </div>
       </div>
@@ -1041,7 +1168,7 @@
         <div class="faq-item">
           <div class="faq-num">01</div>
           <div class="faq-q">The installer is unsigned. Is it safe?</div>
-          <p class="faq-a">Yes, but I get why you're asking. SmartScreen warns because code-signing certificates cost ~$400/year and VoxWild is a one-person shop. The installer is hosted on GitHub Releases (public repo, every commit is visible) and the download link on this page points there directly. You can inspect every line of Python before trusting it. I plan to get the exe signed once revenue justifies the cost.</p>
+          <p class="faq-a">Yes, but we get why you're asking. SmartScreen warns because code-signing certificates cost ~$400/year and VoxWild is a small indie shop. The installer is hosted on GitHub Releases (public repo, every commit is visible) and the download link on this page points there directly. You can inspect every line of Python before trusting it. We plan to get the exe signed once revenue justifies the cost.</p>
         </div>
 
         <div class="faq-item">
@@ -1053,7 +1180,7 @@
         <div class="faq-item">
           <div class="faq-num">03</div>
           <div class="faq-q">Who's behind it?</div>
-          <p class="faq-a">Me. One person, working under "Cookie Studios." Email is above. Reply SLA is "one day, usually one hour." I am not a team, not a startup, not venture-backed. If that concerns you, buy the lifetime — then it doesn't matter whether I keep the lights on.</p>
+          <p class="faq-a">Cookie Studios — a small independent team building desktop tools. Support email is above, and a real person replies within a day (usually within an hour on weekdays). We're not VC-funded; revenue comes from users buying the app.</p>
         </div>
       </div>
 
@@ -1103,13 +1230,13 @@
         <div class="faq-item">
           <div class="faq-num">10</div>
           <div class="faq-q">Can I move my license to a new PC?</div>
-          <p class="faq-a">Yes. A single license activates on up to two machines. If the old one is dead and you need a seat freed, email me and I'll release it the same day.</p>
+          <p class="faq-a">Yes. A single license activates on up to two machines. If the old one is dead and you need a seat freed, email us and we'll release it the same day.</p>
         </div>
 
         <div class="faq-item">
           <div class="faq-num">11</div>
           <div class="faq-q">What about Mac / Linux?</div>
-          <p class="faq-a">Windows only right now. Mac is possible eventually — the underlying models run fine on Apple Silicon — but packaging and testing on a second platform is a lot of work for one person. If you want Mac support, drop me a line so I can gauge demand.</p>
+          <p class="faq-a">Windows only right now. Mac is possible eventually — the underlying models run fine on Apple Silicon — but packaging and testing on a second platform is a lot of work for a small team. If you want Mac support, drop us a line so we can gauge demand.</p>
         </div>
 
         <div class="faq-item">
