@@ -442,7 +442,7 @@
       border-bottom-color: rgba(0, 200, 130, 0.6);
     }
     .btn:active { transform: translateY(1px); }
-    .btn-lg { padding: 16px 28px; font-size: 15px; }
+    .btn-lg { padding: 14px 24px; font-size: 15px; }
     .btn-ghost {
       background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
       color: var(--txt);
@@ -476,30 +476,29 @@
 
     /* ─── Hero ────────────────────────────────────────────────────────────── */
     .hero {
-      padding: 80px 0 96px;
+      padding: 48px 0 64px;
       position: relative;
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 64px;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
       align-items: center;
     }
-    @media (max-width: 960px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-      .hero { padding: 56px 0 72px; }
+    @media (max-width: 720px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 480px) {
-      .hero { padding: 40px 0 56px; }
+      .hero { padding: 36px 0 48px; }
     }
 
     .hero h1 {
-      font-size: clamp(32px, 6.2vw, 80px);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
+      font-size: clamp(30px, 4.8vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
       font-weight: 700;
       color: var(--txt);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       hyphens: none;
     }
     .hero h1 .line-sub {
@@ -531,10 +530,10 @@
     }
 
     .hero-sub {
-      font-size: clamp(15px, 1.7vw, 18px);
+      font-size: clamp(14px, 1.3vw, 17px);
       color: var(--txt2);
       max-width: 52ch;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       line-height: 1.55;
     }
 
@@ -542,8 +541,8 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 16px;
-      margin-bottom: 18px;
+      gap: 14px;
+      margin-bottom: 14px;
     }
     .hero-meta {
       font-family: var(--font-mono);
@@ -560,8 +559,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(8px, 1.2vw, 14px);
-      height: clamp(140px, 28vw, 320px);
+      gap: clamp(8px, 1vw, 14px);
+      height: clamp(140px, 22vw, 260px);
     }
     .hero-visual .bar {
       position: relative;
