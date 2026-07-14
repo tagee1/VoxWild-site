@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>VoxWild Engines — Kokoro (Fast) &amp; Chatterbox (Natural) Offline TTS Models</title>
+  <meta name="description" content="The two open-source AI speech engines inside VoxWild: Kokoro for instant CPU text-to-speech, Chatterbox for human-sounding narration and 6-second voice cloning. Full specs, licenses, and system requirements." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://voxwild.com/engines" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VoxWild" />
+  <meta property="og:title" content="VoxWild's two engines — Kokoro &amp; Chatterbox" />
+  <meta property="og:description" content="Fast mode for instant speech, Natural mode for client-ready narration and cloning. Open-source models, fully documented." />
+  <meta property="og:image" content="https://voxwild.com/og-image.png" />
+  <meta property="og:url" content="https://voxwild.com/engines" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    #engines h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      margin-bottom: 18px;
+    }
+    #engines { padding-top: 56px; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="VoxWild — offline AI text-to-speech for Windows">
+        <img src="/logo.png" alt="VoxWild logo" width="28" height="28" />
+        <span>VoxWild</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="listen.html">Listen</a></li>
+        <li><a href="engines.html">Engines</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="/download" class="btn">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── ENGINES ─────────────────────────────────────────────────────────── -->
+  <section id="engines">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Two engines</div>
+        <h1>Two AI text-to-speech engines, because voice is a trade-off.</h1>
+        <p>
+          Kokoro is the "done in half a second" TTS engine — instant speech synthesis, no GPU needed. Chatterbox is the "wait a bit, get something you'd actually play for a client" engine — human-sounding narration with voice cloning. Pick per line, per project, whenever.
+        </p>
+      </div>
+
+      <div class="engines">
+        <div class="engine">
+          <div class="tag">Fast mode</div>
+          <h3>Kokoro TTS</h3>
+          <div class="engine-model mono">Kokoro 82M · ONNX runtime · CPU</div>
+          <p>
+            Near-instant generation. Sounds clean and consistent — perfect for narration, audiobooks, and anything where you need speed and clarity over emotional range.
+          </p>
+          <ul class="specs">
+            <li><span class="k">Latency</span><span class="v">~0.4s per 30s of audio</span></li>
+            <li><span class="k">Voices</span><span class="v">13 built-in (US + UK, M/F)</span></li>
+            <li><span class="k">Model size</span><span class="v">82 MB (bundled)</span></li>
+            <li><span class="k">Requires</span><span class="v">CPU only · 4 GB RAM min</span></li>
+            <li><span class="k">Cost</span><span class="v">Free forever, unlimited</span></li>
+          </ul>
+        </div>
+
+        <div class="engine">
+          <div class="tag">Natural mode</div>
+          <h3>Chatterbox TTS</h3>
+          <div class="engine-model mono">Chatterbox · PyTorch · CPU/GPU</div>
+          <p>
+            Slower, but genuinely human-sounding. Clones any voice from a 6-second reference sample. The one you'd use for a real podcast, ad, or client deliverable.
+          </p>
+          <ul class="specs">
+            <li><span class="k">Latency</span><span class="v">~4s per 10s of audio (CPU)</span></li>
+            <li><span class="k">Voice cloning</span><span class="v">Yes, 6s sample minimum</span></li>
+            <li><span class="k">Model size</span><span class="v">~3 GB (first-use download)</span></li>
+            <li><span class="k">Requires</span><span class="v">6 GB RAM min · GPU optional</span></li>
+            <li><span class="k">Cost</span><span class="v">3 free, then Pro unlocks unlimited</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ─── TECHNICAL TRANSPARENCY ──────────────────────────────────────────── -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">What's inside</div>
+        <h2>Open-source AI speech models. No black boxes.</h2>
+        <p>
+          VoxWild is a Python desktop app that bundles a small number of open-source AI text-to-speech models. Here's exactly what they are and where they come from, because you shouldn't install a speech synthesis tool that won't tell you.
+        </p>
+      </div>
+
+      <ul class="tech-list">
+        <li>
+          <span class="lib">Kokoro TTS</span>
+          <span class="desc">Fast-mode speech synthesis. 82M params, ONNX, runs on CPU.</span>
+          <span class="license">Apache 2.0</span>
+        </li>
+        <li>
+          <span class="lib">Chatterbox TTS</span>
+          <span class="desc">Natural-mode synthesis and 6-second voice cloning. Made by Resemble AI.</span>
+          <span class="license">MIT</span>
+        </li>
+        <li>
+          <span class="lib">Resemble Enhance</span>
+          <span class="desc">Optional AI audio enhancement — denoise + dereverb + upsample.</span>
+          <span class="license">MIT</span>
+        </li>
+        <li>
+          <span class="lib">Perth watermark</span>
+          <span class="desc">Inaudible neural watermark embedded in Chatterbox output. Required by the upstream license.</span>
+          <span class="license">MIT</span>
+        </li>
+        <li>
+          <span class="lib">PyTorch · ONNX Runtime</span>
+          <span class="desc">Inference runtimes. Everything runs locally through these — no network calls.</span>
+          <span class="license">BSD · MIT</span>
+        </li>
+        <li>
+          <span class="lib">CustomTkinter</span>
+          <span class="desc">The desktop UI toolkit. Makes Tk not look like Tk.</span>
+          <span class="license">MIT</span>
+        </li>
+      </ul>
+
+      <div class="tech-specs">
+        <div><span class="k">Platform</span><span class="v">Windows 10/11 x64</span></div>
+        <div><span class="k">Installer size</span><span class="v">~377 MB</span></div>
+        <div><span class="k">Disk after install</span><span class="v">~800 MB (Fast mode only) · ~5 GB with Natural mode</span></div>
+        <div><span class="k">Minimum RAM</span><span class="v">4 GB (Fast mode) · 6 GB (Natural mode)</span></div>
+        <div><span class="k">GPU</span><span class="v">Optional · speeds up Enhancement if CUDA available</span></div>
+        <div><span class="k">Network</span><span class="v">Only for license activation and update checks</span></div>
+        <div><span class="k">Telemetry</span><span class="v">None</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top: 0;">
+    <div class="container">
+      <p class="wedge-foot">
+        <a href="listen.html">Hear both engines →</a> &nbsp;·&nbsp;
+        <a href="pricing.html">What it costs →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="download-section" style="padding-top: 48px;">
+    <div class="container">
+      <h2>Both engines. One download.</h2>
+      <a href="/download" class="btn btn-lg">Download for Windows</a>
+      <div class="download-meta mono">
+        Fast mode free forever · Natural mode: 3 free tries, then Pro
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Cookie Studios</div>
+      <div>
+        <a href="listen.html">Listen</a> ·
+        <a href="engines.html">Engines</a> ·
+        <a href="pricing.html">Pricing</a> ·
+        <a href="faq.html">FAQ</a> ·
+        <a href="elevenlabs-alternative.html">ElevenLabs alternative</a> ·
+        <a href="/download">Download</a> ·
+        <a href="https://github.com/tagee1/VoxWild" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="mailto:cookiestudios.dev@gmail.com">Email</a> ·
+        <a href="https://github.com/tagee1/VoxWild/blob/main/PRIVACY.txt" target="_blank" rel="noopener">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-goatcounter="https://voxwild.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
