@@ -38,1165 +38,118 @@
 
   <!-- ── JSON-LD: SoftwareApplication + Organization + FAQPage ───────────── -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://voxwild.com/#software",
-        "name": "VoxWild",
-        "alternateName": "VoxWild AI TTS",
-        "applicationCategory": "MultimediaApplication",
-        "applicationSubCategory": "Text-to-Speech",
-        "operatingSystem": "Windows 10, Windows 11",
-        "description": "Offline AI text-to-speech desktop app for Windows. Features 13 built-in voices (US and UK, male and female), voice cloning from a 6-second reference sample, AI audio enhancement, batch queue generation, and MP3/WAV/SRT export. Runs 100% locally with no cloud dependency. Includes Kokoro TTS (Fast mode) and Chatterbox TTS (Natural mode) open-source speech models.",
-        "url": "https://voxwild.com/",
-        "downloadUrl": "https://github.com/tagee1/VoxWild/releases/latest/download/VoxWild-Setup.exe",
-        "softwareVersion": "1.3.4",
-        "fileSize": "377MB",
-        "screenshot": "https://voxwild.com/logo.png",
-        "offers": [
-          {
-            "@type": "Offer",
-            "name": "VoxWild Free",
-            "price": "0",
-            "priceCurrency": "USD",
-            "description": "Free forever. Unlimited Fast mode (Kokoro TTS). 3 free Natural mode generations and 3 free AI enhancement uses.",
-            "availability": "https://schema.org/InStock"
-          },
-          {
-            "@type": "Offer",
-            "name": "VoxWild Pro Monthly",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://voxwild.com/#software",
+      "name": "VoxWild",
+      "alternateName": "VoxWild AI TTS",
+      "applicationCategory": "MultimediaApplication",
+      "applicationSubCategory": "Text-to-Speech",
+      "operatingSystem": "Windows 10, Windows 11",
+      "description": "Offline AI text-to-speech desktop app for Windows. Features 13 built-in voices (US and UK, male and female), voice cloning from a 6-second reference sample, AI audio enhancement, batch queue generation, and MP3/WAV/SRT export. Runs 100% locally with no cloud dependency. Includes Kokoro TTS (Fast mode) and Chatterbox TTS (Natural mode) open-source speech models.",
+      "url": "https://voxwild.com/",
+      "downloadUrl": "https://github.com/tagee1/VoxWild/releases/latest/download/VoxWild-Setup.exe",
+      "softwareVersion": "1.3.4",
+      "fileSize": "377MB",
+      "screenshot": "https://voxwild.com/logo.png",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "VoxWild Free",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free forever. Unlimited Fast mode (Kokoro TTS). 3 free Natural mode generations and 3 free AI enhancement uses.",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "VoxWild Pro Monthly",
+          "price": "12",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
             "price": "12",
             "priceCurrency": "USD",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "12",
-              "priceCurrency": "USD",
-              "billingDuration": "P1M"
-            },
-            "description": "Unlimited Natural mode, unlimited voice cloning, unlimited AI enhancement. Cancel anytime.",
-            "url": "https://cookiestudios.gumroad.com/l/VoxWildPro",
-            "availability": "https://schema.org/InStock"
+            "billingDuration": "P1M"
           },
-          {
-            "@type": "Offer",
-            "name": "VoxWild Pro Lifetime",
-            "price": "89",
-            "priceCurrency": "USD",
-            "description": "One-time payment. All future updates included. Pays for itself in about 7 months vs monthly.",
-            "url": "https://cookiestudios.gumroad.com/l/VoxWildProLifetime",
-            "availability": "https://schema.org/InStock"
-          }
-        ],
-        "featureList": [
-          "13 built-in voices (US and UK English, male and female)",
-          "Voice cloning from 6-second reference sample",
-          "AI audio enhancement (Resemble Enhance)",
-          "Batch queue generation for long text",
-          "Multi-speaker dialogue mode",
-          "MP3, WAV, and SRT subtitle export",
-          "Runs 100% offline on your Windows PC",
-          "No account required, no cloud dependency",
-          "Unlimited character generation (no caps)"
-        ],
-        "author": {
-          "@id": "https://voxwild.com/#org"
+          "description": "Unlimited Natural mode, unlimited voice cloning, unlimited AI enhancement. Cancel anytime.",
+          "url": "https://cookiestudios.gumroad.com/l/VoxWildPro",
+          "availability": "https://schema.org/InStock"
         },
-        "publisher": {
-          "@id": "https://voxwild.com/#org"
+        {
+          "@type": "Offer",
+          "name": "VoxWild Pro Lifetime",
+          "price": "89",
+          "priceCurrency": "USD",
+          "description": "One-time payment. All future updates included. Pays for itself in about 7 months vs monthly.",
+          "url": "https://cookiestudios.gumroad.com/l/VoxWildProLifetime",
+          "availability": "https://schema.org/InStock"
         }
+      ],
+      "featureList": [
+        "13 built-in voices (US and UK English, male and female)",
+        "Voice cloning from 6-second reference sample",
+        "AI audio enhancement (Resemble Enhance)",
+        "Batch queue generation for long text",
+        "Multi-speaker dialogue mode",
+        "MP3, WAV, and SRT subtitle export",
+        "Runs 100% offline on your Windows PC",
+        "No account required, no cloud dependency",
+        "Unlimited character generation (no caps)"
+      ],
+      "author": {
+        "@id": "https://voxwild.com/#org"
       },
-      {
-        "@type": "Organization",
-        "@id": "https://voxwild.com/#org",
-        "name": "Cookie Studios",
-        "url": "https://voxwild.com/",
-        "logo": "https://voxwild.com/logo.png",
-        "email": "cookiestudios.dev@gmail.com",
-        "sameAs": [
-          "https://github.com/tagee1",
-          "https://cookiestudios.gumroad.com"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://voxwild.com/#website",
-        "url": "https://voxwild.com/",
-        "name": "VoxWild",
-        "description": "Offline AI text-to-speech for Windows with voice cloning",
-        "publisher": { "@id": "https://voxwild.com/#org" },
-        "inLanguage": "en-US"
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://voxwild.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "The installer is unsigned. Is it safe?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. SmartScreen warns because code-signing certificates cost ~$400/year and VoxWild is a small indie shop. The installer is hosted on GitHub Releases (public repo, every commit is visible) and you can inspect every line of Python before trusting it. We plan to get the exe signed once revenue justifies the cost."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does VoxWild actually run offline?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. The only network requests the app ever makes are a single HTTPS call to Gumroad when you enter a license key, and a daily check to GitHub for new versions. Your text, your audio, your voice clones — none of it leaves your computer. No account required."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What file formats can VoxWild export?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "MP3 with configurable bitrate and ID3 metadata, WAV 16-bit, and SRT subtitle files timed to the audio. FLAC export is on the roadmap."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is there a maximum text length for text-to-speech?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No, VoxWild has no text-length limit. The queue splits long text into chunks at sentence boundaries and concatenates the output. It has been tested with book-length scripts."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I use VoxWild audio commercially?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, on every tier including the Free tier, for both the Fast (Kokoro) and Natural (Chatterbox) engines. Chatterbox output includes an inaudible neural watermark (Perth) required by the upstream license. Voice cloning requires that you have rights to the source voice."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How good is 6-second voice cloning?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Good enough to fool a listener in a podcast context, though not good enough to fool the cloned person's spouse. Longer reference samples (30–60 seconds of clean audio) produce noticeably better clones. Audio quality of the source matters more than length."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the refund policy?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "14 days, no questions asked, through Gumroad. Reply to your receipt email and ask for a refund."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I move my license to a new PC?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. A single VoxWild license activates on up to two machines. If the old one is dead and you need a seat freed, email us and we'll release it the same day."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is VoxWild available for Mac or Linux?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Windows only right now. Mac support is possible since the underlying models run on Apple Silicon, but packaging and testing on a second platform is a lot of work for a small team."
-            }
-          }
-        ]
+      "publisher": {
+        "@id": "https://voxwild.com/#org"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://voxwild.com/#org",
+      "name": "Cookie Studios",
+      "url": "https://voxwild.com/",
+      "logo": "https://voxwild.com/logo.png",
+      "email": "cookiestudios.dev@gmail.com",
+      "sameAs": [
+        "https://github.com/tagee1",
+        "https://cookiestudios.gumroad.com"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://voxwild.com/#website",
+      "url": "https://voxwild.com/",
+      "name": "VoxWild",
+      "description": "Offline AI text-to-speech for Windows with voice cloning",
+      "publisher": {
+        "@id": "https://voxwild.com/#org"
+      },
+      "inLanguage": "en-US"
+    }
+  ]
+}
   </script>
 
-  <style>
-    /* ─── Reset ───────────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #0d0d0d;
-      --surface:   #171717;
-      --card:      #1a1a1a;
-      --elev:      #222;
-      --border:    #2e2e2e;
-      --rule:      rgba(0, 217, 139, 0.18);
-      --accent:    #00d98b;
-      --accent-h:  #2ee5a0;
-      --accent-d:  #0a3d28;
-      --accent-glow: rgba(0, 217, 139, 0.12);
-      --txt:       #f0ece4;
-      --txt2:      #9a9290;
-      --txt3:      #5c5956;
-      --danger:    #f87171;
-
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", Arial, sans-serif;
-      --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-      --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-
-      --container: 1180px;
-    }
-
-    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-
-    body {
-      background:
-        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(0, 217, 139, 0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0, 217, 139, 0.05) 0%, transparent 60%),
-        var(--bg);
-      background-attachment: fixed;
-      color: var(--txt);
-      font-family: var(--font-sans);
-      font-size: 16px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
-
-    ::selection { background: var(--accent); color: var(--bg); }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s;
-    }
-    a:hover { border-bottom-color: var(--accent); }
-
-    img { max-width: 100%; display: block; }
-
-    /* ─── Layout ──────────────────────────────────────────────────────────── */
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-    @media (max-width: 560px) {
-      .container { padding: 0 18px; }
-    }
-
-    section {
-      position: relative;
-      padding: 96px 0;
-    }
-    @media (max-width: 780px) {
-      section { padding: 72px 0; }
-    }
-    @media (max-width: 480px) {
-      section { padding: 56px 0; }
-    }
-
-    /* Prevent any overflow from long unbreakable words */
-    h1, h2, h3, p { overflow-wrap: break-word; word-break: normal; }
-
-    /* Hairline section divider — emerald 3-bar equalizer glyph */
-    .divider {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 4px;
-      height: 20px;
-      margin: 0 auto;
-      width: fit-content;
-    }
-    .divider span {
-      width: 3px;
-      background: var(--accent);
-      border-radius: 1px;
-    }
-    .divider span:nth-child(1) { height: 8px;  }
-    .divider span:nth-child(2) { height: 16px; }
-    .divider span:nth-child(3) { height: 12px; }
-    .divider span:nth-child(4) { height: 20px; }
-    .divider span:nth-child(5) { height: 6px;  }
-
-    /* ─── Typography ──────────────────────────────────────────────────────── */
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--accent);
-      margin-bottom: 18px;
-    }
-
-    h1, h2, h3 {
-      color: var(--txt);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-    }
-    h2 {
-      font-size: clamp(30px, 4vw, 48px);
-      margin-bottom: 18px;
-    }
-    h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-      letter-spacing: -0.015em;
-    }
-
-    p { color: var(--txt); max-width: 62ch; }
-    p + p { margin-top: 14px; }
-
-    .muted { color: var(--txt2); }
-    .dim   { color: var(--txt3); }
-    .mono  { font-family: var(--font-mono); }
-
-    /* ─── Nav ─────────────────────────────────────────────────────────────── */
-    nav {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--txt);
-      border: none;
-    }
-    .brand img { width: 28px; height: 28px; }
-    .brand span {
-      font-family: var(--font-mono);
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      list-style: none;
-      flex-wrap: nowrap;
-    }
-    .nav-links a {
-      color: var(--txt2);
-      font-size: 14px;
-      font-family: var(--font-mono);
-      border: none;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--txt); }
-    .nav-links a.btn { color: #062018; }
-    @media (max-width: 820px) {
-      .nav-links li:nth-child(1),
-      .nav-links li:nth-child(2),
-      .nav-links li:nth-child(3),
-      .nav-links li:nth-child(4) { display: none; }
-    }
-    @media (max-width: 520px) {
-      .nav-links li { display: none !important; }
-      .nav-links li:last-child { display: block !important; }
-    }
-
-    /* ─── Buttons (glossy) ────────────────────────────────────────────────── */
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background: linear-gradient(180deg, #0ee39a 0%, #00c97e 100%);
-      color: #062018;
-      font-family: var(--font-sans);
-      font-size: 14px;
-      font-weight: 600;
-      border: 1px solid rgba(0, 200, 130, 0.6);
-      border-radius: 5px;
-      cursor: pointer;
-      transition: filter 0.18s, box-shadow 0.18s, transform 0.08s;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-        0 2px 6px rgba(0, 0, 0, 0.25),
-        0 0 18px rgba(0, 217, 139, 0.25);
-      overflow: hidden;
-      isolation: isolate;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
-    }
-    .btn::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 50%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .btn > * { position: relative; z-index: 1; }
-    .btn:hover {
-      filter: brightness(1.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.15),
-        0 4px 14px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(0, 217, 139, 0.55);
-      color: #062018;
-      border-bottom-color: rgba(0, 200, 130, 0.6);
-    }
-    .btn:active { transform: translateY(1px); }
-    .btn-lg { padding: 14px 24px; font-size: 15px; }
-    .btn-ghost {
-      background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
-      color: var(--txt);
-      border: 1px solid var(--border);
-      text-shadow: none;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .btn-ghost::before {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
-    }
-    .btn-ghost:hover {
-      background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
-      color: var(--txt);
-      border-color: rgba(0, 217, 139, 0.4);
-      filter: none;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.06),
-        0 4px 10px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(0, 217, 139, 0.15);
-    }
-    .btn-text {
-      color: var(--accent);
-      font-family: var(--font-mono);
-      font-size: 14px;
-      font-weight: 500;
-      border-bottom: 1px solid transparent;
-    }
-    .btn-text:hover { border-bottom-color: var(--accent); }
-
-    /* ─── Hero ────────────────────────────────────────────────────────────── */
-    .hero {
-      padding: 48px 0 64px;
-      position: relative;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    @media (max-width: 720px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
-    }
-    @media (max-width: 480px) {
-      .hero { padding: 36px 0 48px; }
-    }
-
-    .hero h1 {
-      font-size: clamp(30px, 4.8vw, 60px);
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      font-weight: 700;
-      color: var(--txt);
-      margin-bottom: 20px;
-      hyphens: none;
-    }
-    .hero h1 .line-sub {
-      display: block;
-      font-weight: 500;
-      color: var(--txt);
-      font-size: 0.88em;
-    }
-    .strike {
-      position: relative;
-      display: inline-block;
-      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 28px rgba(0, 217, 139, 0.45));
-    }
-    .strike::after {
-      content: "";
-      position: absolute;
-      left: -2%;
-      right: -2%;
-      top: 56%;
-      height: 0.09em;
-      background: linear-gradient(90deg, transparent, var(--accent) 15%, var(--accent-h) 50%, var(--accent) 85%, transparent);
-      transform: rotate(-2deg);
-      border-radius: 2px;
-      box-shadow: 0 0 12px rgba(0, 217, 139, 0.6);
-    }
-
-    .hero-sub {
-      font-size: clamp(14px, 1.3vw, 17px);
-      color: var(--txt2);
-      max-width: 52ch;
-      margin-bottom: 24px;
-      line-height: 1.55;
-    }
-
-    .hero-cta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    .hero-meta {
-      font-family: var(--font-mono);
-      font-size: clamp(11px, 1.3vw, 12.5px);
-      color: var(--txt3);
-      word-break: break-all;
-    }
-    @media (max-width: 480px) {
-      .hero-cta .btn { width: 100%; justify-content: center; }
-    }
-
-    /* Hero right — breathing bar equalizer (decorative) */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(8px, 1vw, 14px);
-      height: clamp(140px, 22vw, 260px);
-    }
-    .hero-visual .bar {
-      position: relative;
-      width: clamp(10px, 1.6vw, 18px);
-      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 50%, #00a36a 100%);
-      border-radius: 3px;
-      animation: bar-breathe 3.2s ease-in-out infinite;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.45),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-        0 0 30px rgba(0, 217, 139, 0.45),
-        0 4px 16px rgba(0, 0, 0, 0.35);
-    }
-    .hero-visual .bar::before {
-      content: "";
-      position: absolute;
-      top: 6%;
-      left: 22%;
-      right: 22%;
-      height: 28%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
-      border-radius: 1px;
-      filter: blur(0.5px);
-    }
-    .hero-visual .bar:nth-child(1) { height: 34%; animation-delay: 0.0s;  }
-    .hero-visual .bar:nth-child(2) { height: 62%; animation-delay: 0.25s; }
-    .hero-visual .bar:nth-child(3) { height: 92%; animation-delay: 0.5s;  }
-    .hero-visual .bar:nth-child(4) { height: 54%; animation-delay: 0.75s; }
-    .hero-visual .bar:nth-child(5) { height: 26%; animation-delay: 1.0s;  }
-    @keyframes bar-breathe {
-      0%, 100% { transform: scaleY(0.88); opacity: 0.85; }
-      50%      { transform: scaleY(1.12); opacity: 1; }
-    }
-
-    /* ─── Listen (demo clips) ─────────────────────────────────────────────── */
-    .listen-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-    @media (max-width: 920px) { .listen-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .listen-grid { grid-template-columns: 1fr; } }
-
-    .clip {
-      position: relative;
-      padding: 20px;
-      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-    }
-    .clip::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.25), transparent);
-    }
-    .clip-tag {
-      font-family: var(--font-mono);
-      font-size: 10.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .clip-name {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--txt);
-      letter-spacing: -0.01em;
-      margin-bottom: 2px;
-    }
-    .clip-desc {
-      font-size: 13px;
-      color: var(--txt3);
-      margin-bottom: 16px;
-    }
-    .clip-player { display: flex; align-items: center; gap: 12px; }
-    .clip-btn {
-      flex: none;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(180deg, #0ee39a 0%, #00c97e 100%);
-      border: 1px solid rgba(0, 200, 130, 0.6);
-      border-radius: 50%;
-      cursor: pointer;
-      color: #062018;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 14px rgba(0, 217, 139, 0.25);
-      transition: filter 0.15s, box-shadow 0.15s;
-      padding: 0;
-    }
-    .clip-btn:hover {
-      filter: brightness(1.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.4),
-        0 0 24px rgba(0, 217, 139, 0.5);
-    }
-    .clip-btn svg { width: 14px; height: 14px; display: block; }
-    .clip-track { flex: 1; min-width: 0; cursor: pointer; padding: 8px 0; }
-    .clip-rail {
-      position: relative;
-      height: 4px;
-      background: var(--elev);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .clip-fill {
-      position: absolute;
-      top: 0; bottom: 0; left: 0;
-      width: 0%;
-      background: linear-gradient(90deg, #00a36a, var(--accent));
-      border-radius: 2px;
-    }
-    .clip-time {
-      flex: none;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--txt3);
-      min-width: 34px;
-      text-align: right;
-    }
-    .clip.pending .clip-player { opacity: 0.3; pointer-events: none; }
-    .clip-soon {
-      display: none;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--txt3);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 12px;
-    }
-    .clip.pending .clip-soon { display: block; }
-
-    .listen-foot {
-      margin-top: 24px;
-      display: flex;
-      align-items: baseline;
-      gap: 16px;
-      flex-wrap: wrap;
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      color: var(--txt3);
-    }
-    #clone-reveal {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--txt2);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 6px 12px;
-      border-radius: 2px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    #clone-reveal:hover { border-color: var(--accent); color: var(--accent); }
-    #clone-answer { color: var(--accent); }
-
-    /* ─── Wedge (full-bleed pricing punch line) ───────────────────────────── */
-    .wedge {
-      padding: 96px 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-    }
-    @media (max-width: 780px) {
-      .wedge { padding: 72px 0; }
-    }
-    .wedge-text {
-      font-size: clamp(24px, 4.6vw, 64px);
-      font-weight: 600;
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-      color: var(--txt);
-      max-width: 22ch;
-    }
-    .wedge-text .hl {
-      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 0 24px rgba(0, 217, 139, 0.35));
-    }
-    @media (min-width: 640px) {
-      .wedge-text .hl { white-space: nowrap; }
-    }
-    .wedge-text .low { color: var(--txt3); }
-    .wedge-foot {
-      margin-top: 32px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt2);
-    }
-    .wedge-foot a { color: var(--accent); }
-
-    /* ─── Engines (split panel) ───────────────────────────────────────────── */
-    .engines {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .engine {
-      padding: 40px;
-      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
-      position: relative;
-    }
-    .engine::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.3), transparent);
-    }
-    .engine + .engine { border-left: 1px solid var(--border); }
-    @media (max-width: 780px) {
-      .engines { grid-template-columns: 1fr; }
-      .engine + .engine { border-left: none; border-top: 1px solid var(--border); }
-      .engine { padding: 28px 20px; }
-    }
-    @media (max-width: 480px) {
-      .engine { padding: 24px 18px; }
-      .specs .k { min-width: 90px; }
-    }
-    .engine .tag {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .engine h3 {
-      font-size: 26px;
-      margin-bottom: 6px;
-    }
-    .engine .engine-model {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt3);
-      margin-bottom: 20px;
-    }
-    .engine p {
-      color: var(--txt2);
-      font-size: 15px;
-      margin-bottom: 24px;
-    }
-
-    .specs {
-      list-style: none;
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-    }
-    .specs li {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      padding: 8px 0;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      border-bottom: 1px dashed var(--border);
-    }
-    .specs li:last-child { border-bottom: none; }
-    .specs .k { color: var(--txt3); min-width: 110px; }
-    .specs .v { color: var(--txt); flex: 1; }
-
-    /* ─── Pricing ─────────────────────────────────────────────────────────── */
-    .pricing-intro {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-size: clamp(22px, 2.4vw, 30px);
-      line-height: 1.35;
-      color: var(--txt);
-      max-width: 22ch;
-      margin-bottom: 48px;
-    }
-
-    .compare-wrap {
-      position: relative;
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      margin-bottom: 48px;
-      background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.03),
-        0 8px 28px rgba(0, 0, 0, 0.4);
-    }
-    table.compare {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      min-width: 640px;
-    }
-    table.compare th,
-    table.compare td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-    table.compare th {
-      font-weight: 600;
-      color: var(--txt3);
-      text-transform: uppercase;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-    table.compare td { color: var(--txt2); }
-    table.compare td.me {
-      color: var(--accent);
-      font-weight: 600;
-      background: linear-gradient(180deg, rgba(0, 217, 139, 0.09) 0%, rgba(0, 217, 139, 0.04) 100%);
-    }
-    table.compare th.me {
-      color: var(--accent);
-      background: linear-gradient(180deg, rgba(0, 217, 139, 0.12) 0%, rgba(0, 217, 139, 0.05) 100%);
-      box-shadow: inset 0 1px 0 rgba(0, 217, 139, 0.3);
-      text-shadow: 0 0 16px rgba(0, 217, 139, 0.35);
-    }
-    table.compare tr:last-child td { border-bottom: none; }
-    table.compare .lose { color: var(--danger); }
-    table.compare .row-label { color: var(--txt); font-weight: 500; }
-
-    /* Buy strip */
-    .buy-strip {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-      background: var(--surface);
-    }
-    .buy-strip > div {
-      position: relative;
-      padding: 28px 28px 24px;
-      border-right: 1px solid var(--border);
-      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
-    }
-    .buy-strip > div::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    }
-    .buy-strip > div:last-child { border-right: none; }
-    .buy-tier { font-family: var(--font-mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--txt3); margin-bottom: 12px; }
-    .buy-price { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .buy-price .per { font-size: 14px; font-weight: 500; color: var(--txt3); }
-    .buy-note { font-size: 13px; color: var(--txt2); margin-bottom: 20px; }
-    .buy-recommended .buy-tier { color: var(--accent); }
-    .buy-recommended {
-      background:
-        linear-gradient(180deg, rgba(0, 217, 139, 0.10) 0%, rgba(0, 217, 139, 0.02) 50%, #161616 100%) !important;
-      box-shadow: inset 0 0 60px rgba(0, 217, 139, 0.08);
-    }
-    .buy-recommended::before {
-      height: 2px !important;
-      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.6), transparent) !important;
-    }
-    .buy-pick {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--accent);
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .buy-strip .btn { width: 100%; justify-content: center; }
-    @media (max-width: 780px) {
-      .buy-strip { grid-template-columns: 1fr; }
-      .buy-strip > div { border-right: none; border-bottom: 1px solid var(--border); }
-      .buy-strip > div:last-child { border-bottom: none; }
-    }
-
-    /* ─── Technical transparency ──────────────────────────────────────────── */
-    .tech-list {
-      list-style: none;
-      border-top: 1px solid var(--border);
-    }
-    .tech-list li {
-      display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 24px;
-      align-items: baseline;
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 14px;
-    }
-    .tech-list .lib {
-      color: var(--txt);
-      font-weight: 600;
-    }
-    .tech-list .desc { color: var(--txt2); font-family: var(--font-sans); font-size: 15px; }
-    .tech-list .license {
-      color: var(--txt3);
-      font-size: 11.5px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    @media (max-width: 720px) {
-      .tech-list li { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
-    }
-
-    .tech-specs {
-      position: relative;
-      margin-top: 48px;
-      padding: 24px 28px;
-      background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt2);
-      line-height: 1.9;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 4px 16px rgba(0, 0, 0, 0.3);
-    }
-    .tech-specs::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.25), transparent);
-    }
-    .tech-specs .k { color: var(--txt3); display: inline-block; min-width: 140px; }
-    .tech-specs .v { color: var(--txt); }
-
-    /* ─── Why I built this (first-person serif) ───────────────────────────── */
-    .manifesto {
-      max-width: 640px;
-      font-family: var(--font-serif);
-      font-size: 20px;
-      line-height: 1.65;
-      color: var(--txt);
-    }
-    .manifesto p { color: inherit; font-family: inherit; font-size: inherit; max-width: none; }
-    .manifesto p + p { margin-top: 20px; }
-    .manifesto .signoff {
-      margin-top: 28px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt2);
-      line-height: 1.9;
-    }
-    .manifesto .signoff a { color: var(--accent); }
-
-    /* ─── FAQ ─────────────────────────────────────────────────────────────── */
-    .faq-group { margin-top: 36px; }
-    .faq-group-title {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--txt3);
-      margin-bottom: 18px;
-      padding-top: 18px;
-      border-top: 1px solid var(--border);
-    }
-    .faq-item { padding: 22px 0; border-bottom: 1px solid var(--border); max-width: 780px; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-num {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .faq-q {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--txt);
-      margin-bottom: 8px;
-      letter-spacing: -0.01em;
-    }
-    .faq-a { color: var(--txt2); font-size: 15px; line-height: 1.6; }
-    .faq-a + .faq-a { margin-top: 8px; }
-
-    /* ─── Easter egg canvas ───────────────────────────────────────────────── */
-    .egg {
-      padding: 80px 0;
-      border-top: 1px solid var(--border);
-    }
-    .egg-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--txt3);
-      margin-bottom: 10px;
-    }
-    .egg h2 {
-      font-size: clamp(24px, 3vw, 36px);
-      margin-bottom: 6px;
-    }
-    .egg-sub {
-      color: var(--txt2);
-      font-size: 15px;
-      margin-bottom: 24px;
-    }
-    .egg-canvas-wrap {
-      position: relative;
-      border: 1px solid var(--border);
-      border-radius: 2px;
-      background: var(--surface);
-      cursor: crosshair;
-      overflow: hidden;
-    }
-    #egg-canvas {
-      display: block;
-      width: 100%;
-      height: 200px;
-    }
-    .egg-hint {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--txt3);
-      font-family: var(--font-mono);
-      font-size: 13px;
-      pointer-events: none;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      transition: opacity 0.2s;
-    }
-    .egg-canvas-wrap.drawing .egg-hint { opacity: 0; }
-    .egg-actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--txt3);
-    }
-    .egg-actions button {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--txt2);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      padding: 6px 12px;
-      border-radius: 2px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .egg-actions button:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ─── Download footer ─────────────────────────────────────────────────── */
-    .download-section {
-      padding: 96px 0;
-      border-top: 1px solid var(--rule);
-      text-align: center;
-    }
-    @media (max-width: 780px) {
-      .download-section { padding: 72px 0; }
-    }
-    .download-section h2 {
-      font-size: clamp(28px, 4.4vw, 56px);
-      margin-bottom: 24px;
-    }
-    .download-section .download-meta {
-      word-break: break-all;
-    }
-    .download-meta {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--txt3);
-      margin-top: 18px;
-      line-height: 1.8;
-    }
-
-    footer {
-      padding: 40px 0 60px;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 12.5px;
-      color: var(--txt3);
-    }
-    footer .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-    footer a { color: var(--txt2); border: none; }
-    footer a:hover { color: var(--accent); }
-
-    /* ─── Utility ─────────────────────────────────────────────────────────── */
-    .section-head { margin-bottom: 48px; }
-    .section-head p { color: var(--txt2); font-size: 17px; max-width: 56ch; margin-top: 12px; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- ─── NAV ─────────────────────────────────────────────────────────────── -->
   <nav>
     <div class="container nav-inner">
-      <a href="#" class="brand" aria-label="VoxWild — offline AI text-to-speech for Windows">
+      <a href="/" class="brand" aria-label="VoxWild — offline AI text-to-speech for Windows">
         <img src="logo.png" alt="VoxWild offline AI text-to-speech logo — emerald sound wave" width="28" height="28" />
         <span>VoxWild</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#listen">Listen</a></li>
-        <li><a href="#engines">Engines</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="https://github.com/tagee1/VoxWild" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="/listen">Listen</a></li>
+        <li><a href="/engines">Engines</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/faq">FAQ</a></li>
         <li><a href="/download" class="btn">Download</a></li>
       </ul>
     </div>
@@ -1218,7 +171,7 @@
 
         <div class="hero-cta">
           <a href="/download" class="btn btn-lg">Download for Windows</a>
-          <a href="#pricing" class="btn-text">See pricing vs. ElevenLabs →</a>
+          <a href="/listen" class="btn-text">Hear the voices first →</a>
         </div>
 
         <p class="hero-meta mono">
@@ -1236,110 +189,6 @@
     </div>
   </section>
 
-  <!-- ─── LISTEN — demo clips ─────────────────────────────────────────────── -->
-  <section id="listen">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Hear it</div>
-        <h2>Judge with your ears, not our words.</h2>
-        <p>
-          Every clip below came straight out of VoxWild — generated on an ordinary Windows laptop and exported with the app's built-in loudness normalization. No studio, no editing, no cherry-picked cloud renders.
-        </p>
-      </div>
-
-      <div class="listen-grid">
-        <div class="clip" data-src="audio/fast-heart.mp3">
-          <div class="clip-tag">Fast mode · Kokoro</div>
-          <div class="clip-name">Heart — US female</div>
-          <div class="clip-desc">On re-recording take fifteen</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-
-        <div class="clip" data-src="audio/fast-george.mp3">
-          <div class="clip-tag">Fast mode · Kokoro</div>
-          <div class="clip-name">George — UK male</div>
-          <div class="clip-desc">On the price of clouds</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-
-        <div class="clip" data-src="audio/fast-michael.mp3">
-          <div class="clip-tag">Fast mode · Kokoro</div>
-          <div class="clip-name">Michael — US male</div>
-          <div class="clip-desc">On the eleven p.m. deadline</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-
-        <div class="clip" data-src="audio/natural-default.mp3">
-          <div class="clip-tag">Natural mode · Chatterbox</div>
-          <div class="clip-name">Natural voice</div>
-          <div class="clip-desc">Conversational — the Pro engine</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-
-        <div class="clip" data-src="audio/clone-a.mp3">
-          <div class="clip-tag">The clone test · Sample A</div>
-          <div class="clip-name">Sample A</div>
-          <div class="clip-desc">One of these two is a real human…</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-
-        <div class="clip" data-src="audio/clone-b.mp3">
-          <div class="clip-tag">The clone test · Sample B</div>
-          <div class="clip-name">Sample B</div>
-          <div class="clip-desc">…the other is a 6-second VoxWild clone.</div>
-          <div class="clip-player">
-            <button class="clip-btn" aria-label="Play sample">
-              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
-            </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
-            <div class="clip-time">0:00</div>
-          </div>
-          <div class="clip-soon">clip coming soon</div>
-        </div>
-      </div>
-
-      <div class="listen-foot">
-        <button id="clone-reveal" type="button">Which one was human? Reveal →</button>
-        <span id="clone-answer" hidden>Sample A is the human. Sample B is VoxWild cloning them from six seconds of audio.</span>
-      </div>
-    </div>
-  </section>
-
   <!-- ─── WEDGE — pricing punch ───────────────────────────────────────────── -->
   <section class="wedge">
     <div class="container">
@@ -1349,160 +198,20 @@
         <span class="low">You pick the plan.</span>
       </div>
       <p class="wedge-foot">
-        <a href="#pricing">See the full comparison ↓</a>
+        <a href="/pricing">See the full comparison →</a>
       </p>
     </div>
   </section>
-
-  <!-- ─── ENGINES ─────────────────────────────────────────────────────────── -->
-  <section id="engines">
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">Two engines</div>
-        <h2>Two AI text-to-speech engines, because voice is a trade-off.</h2>
-        <p>
-          Kokoro is the "done in half a second" TTS engine — instant speech synthesis, no GPU needed. Chatterbox is the "wait a bit, get something you'd actually play for a client" engine — human-sounding narration with voice cloning. Pick per line, per project, whenever.
-        </p>
-      </div>
-
-      <div class="engines">
-        <div class="engine">
-          <div class="tag">Fast mode</div>
-          <h3>Kokoro TTS</h3>
-          <div class="engine-model mono">Kokoro 82M · ONNX runtime · CPU</div>
-          <p>
-            Near-instant generation. Sounds clean and consistent — perfect for narration, audiobooks, and anything where you need speed and clarity over emotional range.
-          </p>
-          <ul class="specs">
-            <li><span class="k">Latency</span><span class="v">~0.4s per 30s of audio</span></li>
-            <li><span class="k">Voices</span><span class="v">13 built-in (US + UK, M/F)</span></li>
-            <li><span class="k">Model size</span><span class="v">82 MB (bundled)</span></li>
-            <li><span class="k">Requires</span><span class="v">CPU only · 4 GB RAM min</span></li>
-            <li><span class="k">Cost</span><span class="v">Free forever, unlimited</span></li>
-          </ul>
-        </div>
-
-        <div class="engine">
-          <div class="tag">Natural mode</div>
-          <h3>Chatterbox TTS</h3>
-          <div class="engine-model mono">Chatterbox · PyTorch · CPU/GPU</div>
-          <p>
-            Slower, but genuinely human-sounding. Clones any voice from a 6-second reference sample. The one you'd use for a real podcast, ad, or client deliverable.
-          </p>
-          <ul class="specs">
-            <li><span class="k">Latency</span><span class="v">~4s per 10s of audio (CPU)</span></li>
-            <li><span class="k">Voice cloning</span><span class="v">Yes, 6s sample minimum</span></li>
-            <li><span class="k">Model size</span><span class="v">~3 GB (first-use download)</span></li>
-            <li><span class="k">Requires</span><span class="v">6 GB RAM min · GPU optional</span></li>
-            <li><span class="k">Cost</span><span class="v">3 free, then Pro unlocks unlimited</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
 
   <!-- ─── PRICING ─────────────────────────────────────────────────────────── -->
   <section id="pricing">
     <div class="container">
       <div class="section-head">
         <div class="eyebrow">Pricing</div>
-        <h2>VoxWild vs. ElevenLabs, Murf, and PlayHT.</h2>
+        <h2>Simple pricing. No character meters.</h2>
         <div class="pricing-intro">
           Three ways to pay, one app. Free if Fast mode text-to-speech is enough. Monthly if you want flexibility. Lifetime if you're in for the long haul.
         </div>
-      </div>
-
-      <div class="compare-wrap">
-        <table class="compare" aria-label="Feature and pricing comparison">
-          <thead>
-            <tr>
-              <th></th>
-              <th class="me">VoxWild Free</th>
-              <th class="me">VoxWild Pro</th>
-              <th>ElevenLabs Starter</th>
-              <th>Murf Creator</th>
-              <th>PlayHT Creator</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="row-label">Monthly cost</td>
-              <td class="me">$0</td>
-              <td class="me">$0 after buy</td>
-              <td>$22</td>
-              <td>$29</td>
-              <td>$31</td>
-            </tr>
-            <tr>
-              <td class="row-label">3-year total</td>
-              <td class="me">$0</td>
-              <td class="me">$89 total</td>
-              <td>$792</td>
-              <td>$1,044</td>
-              <td>$1,116</td>
-            </tr>
-            <tr>
-              <td class="row-label">Runs offline</td>
-              <td class="me">Yes</td>
-              <td class="me">Yes</td>
-              <td class="lose">No</td>
-              <td class="lose">No</td>
-              <td class="lose">No</td>
-            </tr>
-            <tr>
-              <td class="row-label">Voice cloning</td>
-              <td>—</td>
-              <td class="me">Yes, 6s sample</td>
-              <td>Yes (≥Creator $22)</td>
-              <td class="lose">No</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td class="row-label">Voice count</td>
-              <td class="me">13</td>
-              <td class="me">13 + unlimited clones</td>
-              <td>~120</td>
-              <td>~200+</td>
-              <td>~800</td>
-            </tr>
-            <tr>
-              <td class="row-label">Character limit</td>
-              <td class="me">unlimited</td>
-              <td class="me">unlimited</td>
-              <td>30k / month</td>
-              <td>200k / month</td>
-              <td>250k / month</td>
-            </tr>
-            <tr>
-              <td class="row-label">Your text goes to</td>
-              <td class="me">your laptop</td>
-              <td class="me">your laptop</td>
-              <td class="lose">their servers</td>
-              <td class="lose">their servers</td>
-              <td class="lose">their servers</td>
-            </tr>
-            <tr>
-              <td class="row-label">Commercial use</td>
-              <td class="me">Yes</td>
-              <td class="me">Yes</td>
-              <td>Yes</td>
-              <td>Yes</td>
-              <td>Yes</td>
-            </tr>
-            <tr>
-              <td class="row-label">Open-source models</td>
-              <td class="me">Yes</td>
-              <td class="me">Yes</td>
-              <td class="lose">No</td>
-              <td class="lose">No</td>
-              <td class="lose">No</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
 
       <div class="buy-strip">
@@ -1526,66 +235,10 @@
           <a href="https://cookiestudios.gumroad.com/l/VoxWildProLifetime" class="btn">Buy lifetime</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <div class="divider" aria-hidden="true">
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <!-- ─── TECHNICAL TRANSPARENCY ──────────────────────────────────────────── -->
-  <section>
-    <div class="container">
-      <div class="section-head">
-        <div class="eyebrow">What's inside</div>
-        <h2>Open-source AI speech models. No black boxes.</h2>
-        <p>
-          VoxWild is a Python desktop app that bundles a small number of open-source AI text-to-speech models. Here's exactly what they are and where they come from, because you shouldn't install a speech synthesis tool that won't tell you.
-        </p>
-      </div>
-
-      <ul class="tech-list">
-        <li>
-          <span class="lib">Kokoro TTS</span>
-          <span class="desc">Fast-mode speech synthesis. 82M params, ONNX, runs on CPU.</span>
-          <span class="license">Apache 2.0</span>
-        </li>
-        <li>
-          <span class="lib">Chatterbox TTS</span>
-          <span class="desc">Natural-mode synthesis and 6-second voice cloning. Made by Resemble AI.</span>
-          <span class="license">MIT</span>
-        </li>
-        <li>
-          <span class="lib">Resemble Enhance</span>
-          <span class="desc">Optional AI audio enhancement — denoise + dereverb + upsample.</span>
-          <span class="license">MIT</span>
-        </li>
-        <li>
-          <span class="lib">Perth watermark</span>
-          <span class="desc">Inaudible neural watermark embedded in Chatterbox output. Required by the upstream license.</span>
-          <span class="license">MIT</span>
-        </li>
-        <li>
-          <span class="lib">PyTorch · ONNX Runtime</span>
-          <span class="desc">Inference runtimes. Everything runs locally through these — no network calls.</span>
-          <span class="license">BSD · MIT</span>
-        </li>
-        <li>
-          <span class="lib">CustomTkinter</span>
-          <span class="desc">The desktop UI toolkit. Makes Tk not look like Tk.</span>
-          <span class="license">MIT</span>
-        </li>
-      </ul>
-
-      <div class="tech-specs">
-        <div><span class="k">Platform</span><span class="v">Windows 10/11 x64</span></div>
-        <div><span class="k">Installer size</span><span class="v">~377 MB</span></div>
-        <div><span class="k">Disk after install</span><span class="v">~800 MB (Fast mode only) · ~5 GB with Natural mode</span></div>
-        <div><span class="k">Minimum RAM</span><span class="v">4 GB (Fast mode) · 6 GB (Natural mode)</span></div>
-        <div><span class="k">GPU</span><span class="v">Optional · speeds up Enhancement if CUDA available</span></div>
-        <div><span class="k">Network</span><span class="v">Only for license activation and update checks</span></div>
-        <div><span class="k">Telemetry</span><span class="v">None</span></div>
-      </div>
+      <p class="wedge-foot" style="margin-top: 28px;">
+        <a href="/pricing">Full comparison vs ElevenLabs, Murf &amp; PlayHT — limits, cloning, 3-year cost →</a>
+      </p>
     </div>
   </section>
 
@@ -1630,7 +283,7 @@
       </div>
 
       <div class="faq-group">
-        <div class="faq-group-title">— Is this real?</div>
+        <div class="faq-group-title">— The essentials</div>
 
         <div class="faq-item">
           <div class="faq-num">01</div>
@@ -1646,72 +299,20 @@
 
         <div class="faq-item">
           <div class="faq-num">03</div>
-          <div class="faq-q">Who's behind it?</div>
-          <p class="faq-a">Cookie Studios — a small independent team building desktop tools. Support email is above, and a real person replies within a day (usually within an hour on weekdays). We're not VC-funded; revenue comes from users buying the app.</p>
-        </div>
-      </div>
-
-      <div class="faq-group">
-        <div class="faq-group-title">— Will it do what I need?</div>
-
-        <div class="faq-item">
-          <div class="faq-num">04</div>
-          <div class="faq-q">What can I export?</div>
-          <p class="faq-a">MP3 (configurable bitrate, with ID3 metadata), WAV (16-bit), and SRT subtitle files timed to the audio. FLAC is on the roadmap.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">05</div>
-          <div class="faq-q">Is there a max text length?</div>
-          <p class="faq-a">No. Paste a novel. The queue splits long text into chunks at sentence boundaries and concatenates the output. I've tested it with book-length scripts.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">06</div>
           <div class="faq-q">Can I use the audio commercially?</div>
           <p class="faq-a">Yes, on every tier including Free, for both engines. Two caveats: (a) Chatterbox output contains an inaudible neural watermark (a Perth watermark, required by the upstream license — doesn't affect audio quality). (b) The EULA requires that you only clone voices you have rights to clone. Beyond that, what you make is yours.</p>
         </div>
 
         <div class="faq-item">
-          <div class="faq-num">07</div>
+          <div class="faq-num">04</div>
           <div class="faq-q">How good is the 6-second voice cloning?</div>
           <p class="faq-a">Honest answer: good enough to fool a listener in a podcast context, not good enough to fool the cloned person's spouse. Longer reference samples (30–60 seconds of clean audio) produce noticeably better clones. The quality of the source audio matters more than the length — a clean 8s sample beats a noisy 60s one.</p>
         </div>
       </div>
 
-      <div class="faq-group">
-        <div class="faq-group-title">— What if I change my mind?</div>
-
-        <div class="faq-item">
-          <div class="faq-num">08</div>
-          <div class="faq-q">Refund policy?</div>
-          <p class="faq-a">14 days, no questions asked, through Gumroad. Reply to your receipt email and ask for a refund.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">09</div>
-          <div class="faq-q">What if I cancel Pro Monthly?</div>
-          <p class="faq-a">Fast mode keeps working forever. Natural mode and cloning stop generating new audio. Audio you already generated stays on your disk — it's yours, always.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">10</div>
-          <div class="faq-q">Can I move my license to a new PC?</div>
-          <p class="faq-a">Yes. A single license activates on up to two machines. If the old one is dead and you need a seat freed, email us and we'll release it the same day.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">11</div>
-          <div class="faq-q">What about Mac / Linux?</div>
-          <p class="faq-a">Windows only right now. Mac is possible eventually — the underlying models run fine on Apple Silicon — but packaging and testing on a second platform is a lot of work for a small team. If you want Mac support, drop us a line so we can gauge demand.</p>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-num">12</div>
-          <div class="faq-q">Roadmap?</div>
-          <p class="faq-a">Short-term: more export formats, pronunciation dictionary improvements, better clone management. Longer-term: FLAC, maybe a macOS build, maybe Linux if demand exists. No AI video, no avatars, no chatbot — this app does one thing.</p>
-        </div>
-      </div>
+      <p class="wedge-foot" style="margin-top: 28px;">
+        <a href="/faq">All twelve questions — refunds, licenses, Mac plans, roadmap →</a>
+      </p>
     </div>
   </section>
 
@@ -1750,6 +351,12 @@
     <div class="container footer-inner">
       <div>© 2026 Cookie Studios</div>
       <div>
+        <a href="/listen">Listen</a> ·
+        <a href="/engines">Engines</a> ·
+        <a href="/pricing">Pricing</a> ·
+        <a href="/faq">FAQ</a> ·
+        <a href="/elevenlabs-alternative">ElevenLabs alternative</a> ·
+        <a href="/download">Download</a> ·
         <a href="https://github.com/tagee1/VoxWild" target="_blank" rel="noopener">GitHub</a> ·
         <a href="mailto:cookiestudios.dev@gmail.com">Email</a> ·
         <a href="https://github.com/tagee1/VoxWild/blob/main/PRIVACY.txt" target="_blank" rel="noopener">Privacy</a>
@@ -1926,76 +533,6 @@
       clearBtn.addEventListener('click', clearWave);
 
       resize();
-    })();
-  </script>
-
-  <!-- ─── Listen section: audio players ───────────────────────────────────── -->
-  <script>
-    (() => {
-      const PLAY  = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
-      const PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/></svg>';
-      let current = null;
-
-      function fmt(s) {
-        s = Math.max(0, Math.floor(s || 0));
-        return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
-      }
-
-      document.querySelectorAll('#listen .clip').forEach(clip => {
-        const btn   = clip.querySelector('.clip-btn');
-        const fill  = clip.querySelector('.clip-fill');
-        const time  = clip.querySelector('.clip-time');
-        const track = clip.querySelector('.clip-track');
-
-        const audio = new Audio();
-        audio.preload = 'metadata';
-        audio.src = clip.dataset.src;
-
-        // Missing/broken file → grey the card out instead of a dead button.
-        audio.addEventListener('error', () => clip.classList.add('pending'));
-        audio.addEventListener('loadedmetadata', () => {
-          time.textContent = fmt(audio.duration);
-        });
-
-        btn.addEventListener('click', () => {
-          if (audio.paused) {
-            if (current && current !== audio) current.pause();
-            current = audio;
-            audio.play().catch(() => clip.classList.add('pending'));
-          } else {
-            audio.pause();
-          }
-        });
-        audio.addEventListener('play', () => {
-          btn.innerHTML = PAUSE;
-          btn.setAttribute('aria-label', 'Pause sample');
-        });
-        audio.addEventListener('pause', () => {
-          btn.innerHTML = PLAY;
-          btn.setAttribute('aria-label', 'Play sample');
-        });
-        audio.addEventListener('timeupdate', () => {
-          if (audio.duration) {
-            fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-            time.textContent = fmt(audio.currentTime);
-          }
-        });
-        audio.addEventListener('ended', () => {
-          fill.style.width = '0%';
-          time.textContent = fmt(audio.duration);
-        });
-        track.addEventListener('click', (e) => {
-          if (!audio.duration) return;
-          const r = track.getBoundingClientRect();
-          audio.currentTime = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1) * audio.duration;
-        });
-      });
-
-      const rev = document.getElementById('clone-reveal');
-      const ans = document.getElementById('clone-answer');
-      if (rev && ans) {
-        rev.addEventListener('click', () => { ans.hidden = false; rev.hidden = true; });
-      }
     })();
   </script>
 
