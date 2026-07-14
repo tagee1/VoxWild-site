@@ -52,7 +52,7 @@
         "description": "Offline AI text-to-speech desktop app for Windows. Features 13 built-in voices (US and UK, male and female), voice cloning from a 6-second reference sample, AI audio enhancement, batch queue generation, and MP3/WAV/SRT export. Runs 100% locally with no cloud dependency. Includes Kokoro TTS (Fast mode) and Chatterbox TTS (Natural mode) open-source speech models.",
         "url": "https://voxwild.com/",
         "downloadUrl": "https://github.com/tagee1/VoxWild/releases/latest/download/VoxWild-Setup.exe",
-        "softwareVersion": "1.1.2",
+        "softwareVersion": "1.3.4",
         "fileSize": "377MB",
         "screenshot": "https://voxwild.com/logo.png",
         "offers": [
@@ -390,7 +390,8 @@
     @media (max-width: 820px) {
       .nav-links li:nth-child(1),
       .nav-links li:nth-child(2),
-      .nav-links li:nth-child(3) { display: none; }
+      .nav-links li:nth-child(3),
+      .nav-links li:nth-child(4) { display: none; }
     }
     @media (max-width: 520px) {
       .nav-links li { display: none !important; }
@@ -595,6 +596,135 @@
       0%, 100% { transform: scaleY(0.88); opacity: 0.85; }
       50%      { transform: scaleY(1.12); opacity: 1; }
     }
+
+    /* ─── Listen (demo clips) ─────────────────────────────────────────────── */
+    .listen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 920px) { .listen-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .listen-grid { grid-template-columns: 1fr; } }
+
+    .clip {
+      position: relative;
+      padding: 20px;
+      background: linear-gradient(180deg, #1d1d1d 0%, #161616 100%);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+    }
+    .clip::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.25), transparent);
+    }
+    .clip-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .clip-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--txt);
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+    .clip-desc {
+      font-size: 13px;
+      color: var(--txt3);
+      margin-bottom: 16px;
+    }
+    .clip-player { display: flex; align-items: center; gap: 12px; }
+    .clip-btn {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #0ee39a 0%, #00c97e 100%);
+      border: 1px solid rgba(0, 200, 130, 0.6);
+      border-radius: 50%;
+      cursor: pointer;
+      color: #062018;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 14px rgba(0, 217, 139, 0.25);
+      transition: filter 0.15s, box-shadow 0.15s;
+      padding: 0;
+    }
+    .clip-btn:hover {
+      filter: brightness(1.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 24px rgba(0, 217, 139, 0.5);
+    }
+    .clip-btn svg { width: 14px; height: 14px; display: block; }
+    .clip-track { flex: 1; min-width: 0; cursor: pointer; padding: 8px 0; }
+    .clip-rail {
+      position: relative;
+      height: 4px;
+      background: var(--elev);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .clip-fill {
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 0%;
+      background: linear-gradient(90deg, #00a36a, var(--accent));
+      border-radius: 2px;
+    }
+    .clip-time {
+      flex: none;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--txt3);
+      min-width: 34px;
+      text-align: right;
+    }
+    .clip.pending .clip-player { opacity: 0.3; pointer-events: none; }
+    .clip-soon {
+      display: none;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--txt3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 12px;
+    }
+    .clip.pending .clip-soon { display: block; }
+
+    .listen-foot {
+      margin-top: 24px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--txt3);
+    }
+    #clone-reveal {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--txt2);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    #clone-reveal:hover { border-color: var(--accent); color: var(--accent); }
+    #clone-answer { color: var(--accent); }
 
     /* ─── Wedge (full-bleed pricing punch line) ───────────────────────────── */
     .wedge {
@@ -1062,6 +1192,7 @@
         <span>VoxWild</span>
       </a>
       <ul class="nav-links">
+        <li><a href="#listen">Listen</a></li>
         <li><a href="#engines">Engines</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -1091,7 +1222,7 @@
         </div>
 
         <p class="hero-meta mono">
-          VoxWild-Setup.exe · ~377 MB · Windows 10/11 · v1.1.2
+          VoxWild-Setup.exe · ~377 MB · Windows 10/11 · <span class="app-version">v1.3.4</span>
         </p>
       </div>
 
@@ -1101,6 +1232,110 @@
         <div class="bar"></div>
         <div class="bar"></div>
         <div class="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LISTEN — demo clips ─────────────────────────────────────────────── -->
+  <section id="listen">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Hear it</div>
+        <h2>Judge with your ears, not our words.</h2>
+        <p>
+          Every clip below came straight out of VoxWild — generated on an ordinary Windows laptop and exported with the app's built-in loudness normalization. No studio, no editing, no cherry-picked cloud renders.
+        </p>
+      </div>
+
+      <div class="listen-grid">
+        <div class="clip" data-src="audio/fast-heart.mp3">
+          <div class="clip-tag">Fast mode · Kokoro</div>
+          <div class="clip-name">Heart — US female</div>
+          <div class="clip-desc">On re-recording take fifteen</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+
+        <div class="clip" data-src="audio/fast-george.mp3">
+          <div class="clip-tag">Fast mode · Kokoro</div>
+          <div class="clip-name">George — UK male</div>
+          <div class="clip-desc">On the price of clouds</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+
+        <div class="clip" data-src="audio/fast-michael.mp3">
+          <div class="clip-tag">Fast mode · Kokoro</div>
+          <div class="clip-name">Michael — US male</div>
+          <div class="clip-desc">On the eleven p.m. deadline</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+
+        <div class="clip" data-src="audio/natural-default.mp3">
+          <div class="clip-tag">Natural mode · Chatterbox</div>
+          <div class="clip-name">Natural voice</div>
+          <div class="clip-desc">Conversational — the Pro engine</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+
+        <div class="clip" data-src="audio/clone-a.mp3">
+          <div class="clip-tag">The clone test · Sample A</div>
+          <div class="clip-name">Sample A</div>
+          <div class="clip-desc">One of these two is a real human…</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+
+        <div class="clip" data-src="audio/clone-b.mp3">
+          <div class="clip-tag">The clone test · Sample B</div>
+          <div class="clip-name">Sample B</div>
+          <div class="clip-desc">…the other is a 6-second VoxWild clone.</div>
+          <div class="clip-player">
+            <button class="clip-btn" aria-label="Play sample">
+              <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
+            </button>
+            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-time">0:00</div>
+          </div>
+          <div class="clip-soon">clip coming soon</div>
+        </div>
+      </div>
+
+      <div class="listen-foot">
+        <button id="clone-reveal" type="button">Which one was human? Reveal →</button>
+        <span id="clone-answer" hidden>Sample A is the human. Sample B is VoxWild cloning them from six seconds of audio.</span>
       </div>
     </div>
   </section>
@@ -1505,7 +1740,7 @@
       <h2>Download VoxWild for Windows.</h2>
       <a href="/download" class="btn btn-lg">Download Free</a>
       <div class="download-meta mono">
-        VoxWild-Setup.exe · ~377 MB · Windows 10/11 64-bit · v1.1.2<br />
+        VoxWild-Setup.exe · ~377 MB · Windows 10/11 64-bit · <span class="app-version">v1.3.4</span><br />
         SmartScreen will warn the first time — click "More info" then "Run anyway". The app is unsigned (see FAQ #01).
       </div>
     </div>
@@ -1691,6 +1926,90 @@
       clearBtn.addEventListener('click', clearWave);
 
       resize();
+    })();
+  </script>
+
+  <!-- ─── Listen section: audio players ───────────────────────────────────── -->
+  <script>
+    (() => {
+      const PLAY  = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>';
+      const PAUSE = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5h3v11H4zM9 2.5h3v11H9z"/></svg>';
+      let current = null;
+
+      function fmt(s) {
+        s = Math.max(0, Math.floor(s || 0));
+        return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+      }
+
+      document.querySelectorAll('#listen .clip').forEach(clip => {
+        const btn   = clip.querySelector('.clip-btn');
+        const fill  = clip.querySelector('.clip-fill');
+        const time  = clip.querySelector('.clip-time');
+        const track = clip.querySelector('.clip-track');
+
+        const audio = new Audio();
+        audio.preload = 'metadata';
+        audio.src = clip.dataset.src;
+
+        // Missing/broken file → grey the card out instead of a dead button.
+        audio.addEventListener('error', () => clip.classList.add('pending'));
+        audio.addEventListener('loadedmetadata', () => {
+          time.textContent = fmt(audio.duration);
+        });
+
+        btn.addEventListener('click', () => {
+          if (audio.paused) {
+            if (current && current !== audio) current.pause();
+            current = audio;
+            audio.play().catch(() => clip.classList.add('pending'));
+          } else {
+            audio.pause();
+          }
+        });
+        audio.addEventListener('play', () => {
+          btn.innerHTML = PAUSE;
+          btn.setAttribute('aria-label', 'Pause sample');
+        });
+        audio.addEventListener('pause', () => {
+          btn.innerHTML = PLAY;
+          btn.setAttribute('aria-label', 'Play sample');
+        });
+        audio.addEventListener('timeupdate', () => {
+          if (audio.duration) {
+            fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+            time.textContent = fmt(audio.currentTime);
+          }
+        });
+        audio.addEventListener('ended', () => {
+          fill.style.width = '0%';
+          time.textContent = fmt(audio.duration);
+        });
+        track.addEventListener('click', (e) => {
+          if (!audio.duration) return;
+          const r = track.getBoundingClientRect();
+          audio.currentTime = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1) * audio.duration;
+        });
+      });
+
+      const rev = document.getElementById('clone-reveal');
+      const ans = document.getElementById('clone-answer');
+      if (rev && ans) {
+        rev.addEventListener('click', () => { ans.hidden = false; rev.hidden = true; });
+      }
+    })();
+  </script>
+
+  <!-- ─── Version badge: always show the latest GitHub release ────────────── -->
+  <script>
+    (async () => {
+      try {
+        const r = await fetch('https://api.github.com/repos/tagee1/VoxWild/releases/latest');
+        if (!r.ok) return;
+        const tag = (await r.json()).tag_name;
+        if (!tag) return;
+        const v = 'v' + String(tag).replace(/^v/i, '');
+        document.querySelectorAll('.app-version').forEach(el => { el.textContent = v; });
+      } catch (_) { /* fallback text stays */ }
     })();
   </script>
 
