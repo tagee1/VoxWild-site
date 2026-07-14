@@ -275,7 +275,7 @@
       display: grid;
       grid-template-columns: 1.3fr 1fr;
       gap: 48px;
-      align-items: center;
+      align-items: start;   /* top-align so the spectrum rises next to the headline */
     }
     @media (max-width: 720px) {
       .hero-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -352,6 +352,7 @@
       align-items: center;
       justify-content: center;
       min-height: clamp(150px, 22vw, 250px);
+      padding-top: 10px;   /* optical alignment with the headline block */
     }
     .spectrum {
       position: relative;
@@ -394,7 +395,15 @@
       50%      { transform: scaleY(1);    opacity: 1;   }
     }
     @media (max-width: 720px) {
-      .spectrum { max-width: 360px; height: clamp(110px, 30vw, 170px); }
+      .hero-visual { min-height: 176px; padding-top: 0; }
+      .spectrum { max-width: 460px; height: 158px; gap: 5px; }
+      .spectrum span { max-width: 18px; }
+    }
+    @media (max-width: 480px) {
+      .spectrum { height: 132px; gap: 4px; }
+      .spectrum span { max-width: 22px; }
+      /* Halve the bar count on phones so they breathe instead of smooshing */
+      .spectrum span:nth-child(even) { display: none; }
     }
 
     /* ─── Listen (demo clips) ─────────────────────────────────────────────── */
