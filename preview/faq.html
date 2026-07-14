@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>VoxWild FAQ — Offline TTS, Voice Cloning, Licensing &amp; Refunds</title>
+  <meta name="description" content="Every question people actually ask about VoxWild: is the unsigned installer safe, does it really run offline, commercial use rights, voice clone quality, refunds, license transfers, and the roadmap." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://voxwild.com/faq" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VoxWild" />
+  <meta property="og:title" content="VoxWild FAQ" />
+  <meta property="og:description" content="Installer safety, offline guarantees, commercial use, clone quality, refunds, licensing — answered straight." />
+  <meta property="og:image" content="https://voxwild.com/og-image.png" />
+  <meta property="og:url" content="https://voxwild.com/faq" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/logo.png" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": "https://voxwild.com/faq#faq",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "The installer is unsigned. Is it safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. SmartScreen warns because code-signing certificates cost ~$400/year and VoxWild is a small indie shop. The installer is hosted on GitHub Releases (public repo, every commit is visible) and you can inspect every line of Python before trusting it. We plan to get the exe signed once revenue justifies the cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does VoxWild actually run offline?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The only network requests the app ever makes are a single HTTPS call to Gumroad when you enter a license key, and a daily check to GitHub for new versions. Your text, your audio, your voice clones — none of it leaves your computer. No account required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats can VoxWild export?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MP3 with configurable bitrate and ID3 metadata, WAV 16-bit, and SRT subtitle files timed to the audio. FLAC export is on the roadmap."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a maximum text length for text-to-speech?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, VoxWild has no text-length limit. The queue splits long text into chunks at sentence boundaries and concatenates the output. It has been tested with book-length scripts."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use VoxWild audio commercially?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, on every tier including the Free tier, for both the Fast (Kokoro) and Natural (Chatterbox) engines. Chatterbox output includes an inaudible neural watermark (Perth) required by the upstream license. Voice cloning requires that you have rights to the source voice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How good is 6-second voice cloning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Good enough to fool a listener in a podcast context, though not good enough to fool the cloned person's spouse. Longer reference samples (30–60 seconds of clean audio) produce noticeably better clones. Audio quality of the source matters more than length."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the refund policy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "14 days, no questions asked, through Gumroad. Reply to your receipt email and ask for a refund."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I move my license to a new PC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A single VoxWild license activates on up to two machines. If the old one is dead and you need a seat freed, email us and we'll release it the same day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is VoxWild available for Mac or Linux?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Windows only right now. Mac support is possible since the underlying models run on Apple Silicon, but packaging and testing on a second platform is a lot of work for a small team."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .page-head h1 {
+      font-size: clamp(30px, 4vw, 48px);
+      margin-bottom: 18px;
+    }
+    .page-head { padding-top: 56px; padding-bottom: 0; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="VoxWild — offline AI text-to-speech for Windows">
+        <img src="/logo.png" alt="VoxWild logo" width="28" height="28" />
+        <span>VoxWild</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#listen">Listen</a></li>
+        <li><a href="index.html#engines">Engines</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="https://github.com/tagee1/VoxWild" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="/download" class="btn">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="page-head">
+    <div class="container">
+      <div class="eyebrow">Frequently asked questions</div>
+      <h1>The questions people actually ask.</h1>
+      <p class="muted" style="font-size: 17px; max-width: 56ch;">
+        Answered the way we'd want them answered — including the awkward ones. Can't find yours?
+        <a href="mailto:cookiestudios.dev@gmail.com">Email us</a> and a human replies, usually within the hour on weekdays.
+      </p>
+    </div>
+  </section>
+
+  <section style="padding-top: 24px;">
+    <div class="container">
+      <div class="faq-group">
+        <div class="faq-group-title">— Is this real?</div>
+
+        <div class="faq-item">
+          <div class="faq-num">01</div>
+          <div class="faq-q">The installer is unsigned. Is it safe?</div>
+          <p class="faq-a">Yes, but we get why you're asking. SmartScreen warns because code-signing certificates cost ~$400/year and VoxWild is a small indie shop. The installer is hosted on GitHub Releases (public repo, every commit is visible) and the download link on this page points there directly. You can inspect every line of Python before trusting it. We plan to get the exe signed once revenue justifies the cost.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">02</div>
+          <div class="faq-q">Does it actually run offline?</div>
+          <p class="faq-a">Yes. The only network requests the app ever makes are: (1) a single HTTPS call to Gumroad when you enter a license key, and (2) a daily check to GitHub for new versions. Your text, your audio, your voice clones — none of it leaves your computer. Ever. No account. No cloud.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">03</div>
+          <div class="faq-q">Who's behind it?</div>
+          <p class="faq-a">Cookie Studios — a small independent team building desktop tools. Support email is above, and a real person replies within a day (usually within an hour on weekdays). We're not VC-funded; revenue comes from users buying the app.</p>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-title">— Will it do what I need?</div>
+
+        <div class="faq-item">
+          <div class="faq-num">04</div>
+          <div class="faq-q">What can I export?</div>
+          <p class="faq-a">MP3 (configurable bitrate, with ID3 metadata), WAV (16-bit), and SRT subtitle files timed to the audio. FLAC is on the roadmap.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">05</div>
+          <div class="faq-q">Is there a max text length?</div>
+          <p class="faq-a">No. Paste a novel. The queue splits long text into chunks at sentence boundaries and concatenates the output. I've tested it with book-length scripts.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">06</div>
+          <div class="faq-q">Can I use the audio commercially?</div>
+          <p class="faq-a">Yes, on every tier including Free, for both engines. Two caveats: (a) Chatterbox output contains an inaudible neural watermark (a Perth watermark, required by the upstream license — doesn't affect audio quality). (b) The EULA requires that you only clone voices you have rights to clone. Beyond that, what you make is yours.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">07</div>
+          <div class="faq-q">How good is the 6-second voice cloning?</div>
+          <p class="faq-a">Honest answer: good enough to fool a listener in a podcast context, not good enough to fool the cloned person's spouse. Longer reference samples (30–60 seconds of clean audio) produce noticeably better clones. The quality of the source audio matters more than the length — a clean 8s sample beats a noisy 60s one.</p>
+        </div>
+      </div>
+
+      <div class="faq-group">
+        <div class="faq-group-title">— What if I change my mind?</div>
+
+        <div class="faq-item">
+          <div class="faq-num">08</div>
+          <div class="faq-q">Refund policy?</div>
+          <p class="faq-a">14 days, no questions asked, through Gumroad. Reply to your receipt email and ask for a refund.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">09</div>
+          <div class="faq-q">What if I cancel Pro Monthly?</div>
+          <p class="faq-a">Fast mode keeps working forever. Natural mode and cloning stop generating new audio. Audio you already generated stays on your disk — it's yours, always.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">10</div>
+          <div class="faq-q">Can I move my license to a new PC?</div>
+          <p class="faq-a">Yes. A single license activates on up to two machines. If the old one is dead and you need a seat freed, email us and we'll release it the same day.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">11</div>
+          <div class="faq-q">What about Mac / Linux?</div>
+          <p class="faq-a">Windows only right now. Mac is possible eventually — the underlying models run fine on Apple Silicon — but packaging and testing on a second platform is a lot of work for a small team. If you want Mac support, drop us a line so we can gauge demand.</p>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-num">12</div>
+          <div class="faq-q">Roadmap?</div>
+          <p class="faq-a">Short-term: more export formats, pronunciation dictionary improvements, better clone management. Longer-term: FLAC, maybe a macOS build, maybe Linux if demand exists. No AI video, no avatars, no chatbot — this app does one thing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="download-section">
+    <div class="container">
+      <h2>Convinced? It's free to find out.</h2>
+      <a href="/download" class="btn btn-lg">Download for Windows</a>
+      <div class="download-meta mono">
+        Free forever Fast mode · no account · <a href="pricing.html">pricing details →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 Cookie Studios</div>
+      <div>
+        <a href="pricing.html">Pricing</a> ·
+        <a href="faq.html">FAQ</a> ·
+        <a href="elevenlabs-alternative.html">ElevenLabs alternative</a> ·
+        <a href="/download">Download</a> ·
+        <a href="https://github.com/tagee1/VoxWild" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="mailto:cookiestudios.dev@gmail.com">Email</a> ·
+        <a href="https://github.com/tagee1/VoxWild/blob/main/PRIVACY.txt" target="_blank" rel="noopener">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script data-goatcounter="https://voxwild.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
