@@ -354,14 +354,26 @@
       min-height: clamp(150px, 22vw, 250px);
     }
     .spectrum {
+      position: relative;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       gap: clamp(2px, 0.55vw, 5px);
       width: 100%;
       max-width: 420px;
-      height: clamp(120px, 18vw, 200px);
-      -webkit-box-reflect: below 5px linear-gradient(rgba(0, 0, 0, 0.30), transparent 55%);
+      height: clamp(112px, 17vw, 184px);
+      -webkit-box-reflect: below 2px linear-gradient(rgba(0, 0, 0, 0.22), transparent 42%);
+    }
+    /* Lit "floor" the bars stand on — gives the spectrum a defined bottom edge
+       instead of bleeding into the hero. The reflection mirrors off this line. */
+    .spectrum::after {
+      content: "";
+      position: absolute;
+      left: 4%; right: 4%;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.6) 25%, rgba(46, 229, 160, 0.85) 50%, rgba(0, 217, 139, 0.6) 75%, transparent);
+      box-shadow: 0 0 14px rgba(0, 217, 139, 0.5);
     }
     .spectrum span {
       flex: 1 1 0;
