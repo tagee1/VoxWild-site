@@ -189,6 +189,61 @@
   .appwin-status { font-size: 9.5px; }
 }
 
+/* ═══ HERO #3 — Radial voiceprint orb ═══════════════════════════════════════ */
+.orb {
+  --R: clamp(88px, 11.5vw, 128px);
+  position: relative;
+  width: clamp(238px, 30vw, 340px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  justify-self: center;
+  align-self: center;
+}
+.orb-rings { position: absolute; inset: 6%; }
+.orb-rings span {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(0, 217, 139, 0.35);
+  animation: orb-ping 3.6s ease-out infinite;
+}
+.orb-rings span:nth-child(2) { animation-delay: 1.2s; }
+.orb-rings span:nth-child(3) { animation-delay: 2.4s; }
+@keyframes orb-ping {
+  0%   { transform: scale(0.5);  opacity: 0.7; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+.orb-ring { position: absolute; inset: 0; }
+.orb-ring i {
+  position: absolute; left: 50%; top: 50%; margin-left: -1.5px;
+  width: 3px; height: var(--h, 18px); border-radius: 2px;
+  background: linear-gradient(180deg, #2ee5a0, #00a36a);
+  box-shadow: 0 0 8px rgba(0, 217, 139, 0.4);
+  transform-origin: 50% 0;
+  transform: rotate(var(--rot)) translateY(var(--R)) scaleY(0.85);
+  animation: orb-bar 1.7s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes orb-bar {
+  0%, 100% { transform: rotate(var(--rot)) translateY(var(--R)) scaleY(0.5);  opacity: 0.6; }
+  50%      { transform: rotate(var(--rot)) translateY(var(--R)) scaleY(1.15); opacity: 1;   }
+}
+.orb-core {
+  position: absolute; left: 50%; top: 50%; width: 42%; height: 42%;
+  transform: translate(-50%, -50%); border-radius: 50%;
+  background: radial-gradient(circle at 50% 42%, rgba(46, 229, 160, 0.95), rgba(0, 163, 106, 0.5) 55%, transparent 72%);
+  box-shadow: 0 0 55px rgba(0, 217, 139, 0.5), inset 0 0 30px rgba(0, 217, 139, 0.3);
+  animation: orb-breathe 3s ease-in-out infinite;
+}
+@keyframes orb-breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.93); }
+  50%      { transform: translate(-50%, -50%) scale(1.07); }
+}
+.orb-cap {
+  position: absolute; left: 0; right: 0; bottom: -6%; text-align: center;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em;
+  color: var(--txt3);
+}
+.orb-cap .on { color: var(--accent); }
+
 /* ═══ Comparison page framing (heroes.html) ═════════════════════════════════ */
 .herolab-note {
   max-width: 720px; margin: 0 auto 8px; text-align: center;
