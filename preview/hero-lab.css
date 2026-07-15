@@ -74,12 +74,13 @@
 }
 
 /* ═══ HERO #4 — Desktop app window ══════════════════════════════════════════ */
-.hero-app .hero-app-copy { max-width: 760px; margin-bottom: 40px; }
+.hero-app .hero-app-copy { max-width: 760px; margin: 0 auto 40px; text-align: center; }
 .hero-app .hero-app-copy h1 {
   font-size: clamp(30px, 4.7vw, 56px); line-height: 1.05; letter-spacing: -0.025em;
   font-weight: 700; color: var(--txt); margin-bottom: 20px;
 }
-.hero-app .hero-sub { max-width: 60ch; }
+.hero-app .hero-sub { max-width: 60ch; margin-left: auto; margin-right: auto; }
+.hero-app .hero-cta { justify-content: center; }
 
 .appwin {
   width: 100%; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
@@ -141,7 +142,7 @@
 .aw-label + .aw-label { margin-top: 16px; }
 .aw-textbox {
   background: #2a2a2a; border: 1px solid var(--border); border-radius: 8px; padding: 12px;
-  min-height: 100px; font-size: 14px; color: var(--txt); line-height: 1.5;
+  height: 132px; overflow: hidden; font-size: 14px; color: var(--txt); line-height: 1.5;
 }
 .aw-typed::after { content: "▌"; color: var(--accent); margin-left: 1px; animation: tts-blink 1.05s step-end infinite; }
 .aw-counter { margin-top: 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--txt3); }

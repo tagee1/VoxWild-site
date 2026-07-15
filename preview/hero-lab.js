@@ -10,7 +10,7 @@
   // Shared voice set — text MUST match the generated clips exactly.
   const SET = [
     { label: '🇺🇸 Female - Heart (Best)', flag: '🇺🇸', name: 'Heart', clip: 'hero-heart.mp3',
-      text: "Type what you want to say, and I'll say it. First take, every time, no re-records." },
+      text: "Type what you want to say, and I'll say it. First take, every time — no second takes." },
     { label: '🇬🇧 Male - George (Best)', flag: '🇬🇧', name: 'George', clip: 'hero-george.mp3',
       text: "No subscription. No cloud. No catch. I run right on your laptop, even with the Wi-Fi off." },
     { label: '🇺🇸 Male - Michael', flag: '🇺🇸', name: 'Michael', clip: 'hero-michael.mp3',
@@ -226,18 +226,61 @@
     if (cap) cap.innerHTML = idle;
   })();
 
-  // ── HERO #4 — desktop app window (plays Heart) ──────────────────────────
+  // ── HERO #4 — desktop app window (types the spoken line, cycles 4 voices) ─
   (function () {
     const win = document.querySelector('.appwin');
     if (!win) return;
     const fill = win.querySelector('.appwin-progress-fill'), gen = win.querySelector('.aw-primary'),
-          play = win.querySelector('.aw-play'), cardTime = win.querySelector('.aw-card-time');
+          play = win.querySelector('.aw-play'), cardTime = win.querySelector('.aw-card-time'),
+          typed = win.querySelector('.aw-typed'), voiceSel = win.querySelector('.aw-select span'),
+          counter = win.querySelector('.aw-counter'), cardVoice = win.querySelector('.aw-card-voice'),
+          cardText = win.querySelector('.aw-card-text'), statusEl = win.querySelector('.appwin-status');
+    const READY = 'Ready · Ctrl+Enter to generate · Ctrl+P to play · Esc to stop';
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    const est = t => Math.max(1, Math.round(t.length / 14));
+    const firstSentence = t => { const m = t.match(/^.*?[.!?—](?:\s|$)/); return (m ? m[0] : t).trim().replace(/[—\s]+$/, ''); };
+    let idx = 0, advTimer = 0, playing = false;
+
+    function chrome(line) {
+      if (voiceSel) voiceSel.textContent = line.label;
+      const words = line.text.trim().split(/\s+/).length;
+      if (counter) counter.textContent = 'Words: ' + words + ' · Chars: ' + line.text.length + ' · Audio: ~' + est(line.text) + 's · Processing: ~1s';
+      if (cardVoice) cardVoice.textContent = line.label.replace(/\s*\(Best\)$/, '');
+      if (cardText) cardText.textContent = '"' + firstSentence(line.text) + '"';
+    }
+    async function showLine(i) {
+      const line = SET[i];
+      chrome(line);
+      if (statusEl) statusEl.textContent = READY;
+      if (fill) fill.style.width = '';
+      typed.textContent = '';
+      if (reduce) { typed.textContent = line.text; return; }
+      for (let c = 0; c < line.text.length && !playing; c++) { typed.textContent += line.text[c]; await sleep(line.text[c] === ' ' ? 14 : 24); }
+    }
+    function scheduleAdvance() {
+      clearTimeout(advTimer);
+      if (reduce) return;
+      advTimer = setTimeout(async () => { if (playing) return; idx = (idx + 1) % SET.length; await showLine(idx); scheduleAdvance(); }, 2800);
+    }
     const player = createPlayer(baseOf(win), {
-      clipFor: () => 'hero-heart.mp3',
-      onStart: () => { win.classList.add('playing'); if (play) play.textContent = '❚❚ Pause'; },
-      onStop: () => { win.classList.remove('playing'); if (play) play.textContent = '▶ Play'; if (fill) fill.style.width = ''; if (cardTime) cardTime.textContent = '0:03'; },
+      clipFor: () => SET[idx].clip,
+      onStart: () => {
+        playing = true; clearTimeout(advTimer);
+        win.classList.add('playing'); if (play) play.textContent = '❚❚ Pause';
+        typed.textContent = SET[idx].text;
+        if (statusEl) statusEl.textContent = '▶ Generating · ' + SET[idx].name;
+      },
+      onStop: (ended) => {
+        playing = false; win.classList.remove('playing'); if (play) play.textContent = '▶ Play';
+        if (fill) fill.style.width = '';
+        if (cardTime) cardTime.textContent = fmt(est(SET[idx].text));
+        if (statusEl) statusEl.textContent = ended ? '✓ Done · ' + SET[idx].name : READY;
+        if (ended) { idx = (idx + 1) % SET.length; showLine(idx).then(scheduleAdvance); }
+        else scheduleAdvance();
+      },
       onFrame: (freq, audio) => { if (audio.duration) { if (fill) fill.style.width = (audio.currentTime / audio.duration * 100) + '%'; if (cardTime) cardTime.textContent = fmt(audio.currentTime); } }
     });
     [gen, play].forEach(b => { if (b) { b.style.cursor = 'pointer'; b.addEventListener('click', () => player.toggle()); } });
+    showLine(0).then(scheduleAdvance);
   })();
 })();
