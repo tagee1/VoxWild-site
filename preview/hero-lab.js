@@ -1,11 +1,23 @@
 /* hero-lab.js — hero concept animations + real click-to-play.
    One clip plays at a time; visuals react to the actual audio via a Web-Audio
-   analyser, with a currentTime fallback if Web Audio is unavailable. Respects
-   reduced motion. No-ops for any hero not present on the page. */
+   analyser, with a currentTime fallback. Respects reduced motion. No-ops for
+   any hero not present on the page. */
 (() => {
   const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fmt = s => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
   const baseOf = el => { const n = el.closest('[data-audiobase]'); return (n && n.dataset.audiobase) || 'audio/'; };
+
+  // Shared voice set — text MUST match the generated clips exactly.
+  const SET = [
+    { label: '🇺🇸 Female - Heart (Best)', flag: '🇺🇸', name: 'Heart', clip: 'hero-heart.mp3',
+      text: "Type what you want to say, and I'll say it. First take, every time, no re-records." },
+    { label: '🇬🇧 Male - George (Best)', flag: '🇬🇧', name: 'George', clip: 'hero-george.mp3',
+      text: "No subscription. No cloud. No catch. I run right on your laptop, even with the Wi-Fi off." },
+    { label: '🇺🇸 Male - Michael', flag: '🇺🇸', name: 'Michael', clip: 'hero-michael.mp3',
+      text: "It's midnight, the video's due, and the studio is closed. Paste your script, pick a voice, hit export." },
+    { label: '🇬🇧 Female - Emma', flag: '🇬🇧', name: 'Emma', clip: 'hero-emma.mp3',
+      text: "Thirteen voices built in, plus your own, cloned from just six seconds of audio." },
+  ];
 
   // ── shared audio core ───────────────────────────────────────────────────
   let sharedCtx = null, activePlayer = null;
@@ -67,12 +79,7 @@
           wave = demo.querySelector('.tts-wave'), statusEl = demo.querySelector('.tts-status'),
           timeEl = demo.querySelector('.tts-time'), voiceEl = demo.querySelector('.tts-voice'),
           genBtn = demo.querySelector('.tts-generate'), barFill = demo.querySelector('.tts-bar-fill');
-    const LINES = [
-      { voice: '🇺🇸 Female - Heart (Best)', text: 'First take, every time.', clip: 'hero-heart.mp3' },
-      { voice: '🇬🇧 Male - George (Best)',  text: 'I live on your laptop. No monthly fees.', clip: 'hero-george.mp3' },
-      { voice: '🇺🇸 Male - Michael',        text: 'Paste your script, pick a voice, and hit export.', clip: 'hero-michael.mp3' },
-    ];
-    const N = 42;
+    const N = 46;
     const hash = s => { let h = 2166136261 >>> 0; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; };
     const mul = a => () => { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
     let bars = [];
@@ -90,27 +97,27 @@
     let idx = 0, advTimer = 0, playing = false;
     const sleep = ms => new Promise(r => setTimeout(r, ms));
     async function showLine(i) {
-      const line = LINES[i];
-      voiceEl.textContent = line.voice; build(line.text + i);
+      const line = SET[i];
+      voiceEl.textContent = line.label; build(line.text + i);
       typed.textContent = ''; barFill.style.width = '0%'; statusEl.textContent = 'Ready — press ▸'; timeEl.textContent = '0:00';
       caret.style.display = 'inline-block';
       if (reduce) { typed.textContent = line.text; caret.style.display = 'none'; return; }
-      for (let c = 0; c < line.text.length && !playing; c++) { typed.textContent += line.text[c]; await sleep(line.text[c] === ' ' ? 22 : 32); }
+      for (let c = 0; c < line.text.length && !playing; c++) { typed.textContent += line.text[c]; await sleep(line.text[c] === ' ' ? 14 : 24); }
     }
     function scheduleAdvance() {
       clearTimeout(advTimer);
       if (reduce) return;
-      advTimer = setTimeout(async () => { if (playing) return; idx = (idx + 1) % LINES.length; await showLine(idx); scheduleAdvance(); }, 4200);
+      advTimer = setTimeout(async () => { if (playing) return; idx = (idx + 1) % SET.length; await showLine(idx); scheduleAdvance(); }, 3200);
     }
     const player = createPlayer(baseOf(demo), {
-      clipFor: () => LINES[idx].clip,
+      clipFor: () => SET[idx].clip,
       onStart: () => { playing = true; clearTimeout(advTimer); statusEl.textContent = '▶ Playing'; genBtn.classList.add('pulse'); caret.style.display = 'none'; },
       onStop: (ended) => {
         playing = false; genBtn.classList.remove('pulse');
         bars.forEach(b => { b.classList.remove('on'); b.style.height = ''; });
         barFill.style.width = '0%'; timeEl.textContent = '0:00';
         statusEl.textContent = ended ? '✓ Done' : 'Ready — press ▸';
-        if (ended) { idx = (idx + 1) % LINES.length; showLine(idx).then(scheduleAdvance); } else scheduleAdvance();
+        if (ended) { idx = (idx + 1) % SET.length; showLine(idx).then(scheduleAdvance); } else scheduleAdvance();
       },
       onFrame: (freq, audio) => {
         if (freq) {
@@ -128,7 +135,76 @@
     showLine(0).then(scheduleAdvance);
   })();
 
-  // ── HERO #3 — radial voiceprint orb ─────────────────────────────────────
+  // ── HERO #2 — full-bleed living waveform ────────────────────────────────
+  (function () {
+    const stage = document.querySelector('.wavehero');
+    if (!stage) return;
+    const canvas = stage.querySelector('.wavehero-canvas'), btn = stage.querySelector('.wavehero-play'),
+          now = stage.querySelector('.wavehero-now');
+    const c = canvas.getContext('2d');
+    let W = 0, H = 0, phase = 0, level = 0, target = 0, raf = 0, idx = 0;
+    function resize() {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = canvas.clientWidth; H = canvas.clientHeight;
+      canvas.width = Math.max(1, W * dpr); canvas.height = Math.max(1, H * dpr);
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    function edges() {
+      const mid = H * 0.56, amp = H * 0.34 * (0.16 + level * 0.5), tops = [], bots = [];
+      for (let x = 0; x <= W; x += 4) {
+        const t = x / W, taper = Math.sin(t * Math.PI), bias = 0.45 + 0.55 * t;
+        let s = 0.55 * Math.sin(t * 38 + phase * 2.1) + 0.30 * Math.sin(t * 71 - phase * 1.4) + 0.18 * Math.sin(t * 113 + phase * 0.7);
+        const h = amp * taper * bias * (0.25 + Math.abs(s));
+        tops.push([x, mid - h]); bots.push([x, mid + h]);
+      }
+      return { mid, amp, tops, bots };
+    }
+    function draw() {
+      c.clearRect(0, 0, W, H);
+      level += (target - level) * 0.08;
+      const { mid, amp, tops, bots } = edges();
+      c.beginPath();
+      c.moveTo(tops[0][0], tops[0][1]);
+      for (const p of tops) c.lineTo(p[0], p[1]);
+      for (let i = bots.length - 1; i >= 0; i--) c.lineTo(bots[i][0], bots[i][1]);
+      c.closePath();
+      const g = c.createLinearGradient(0, mid - amp, 0, mid + amp);
+      g.addColorStop(0, 'rgba(0,217,139,0.05)'); g.addColorStop(0.5, 'rgba(0,217,139,0.26)'); g.addColorStop(1, 'rgba(0,217,139,0.05)');
+      c.fillStyle = g; c.fill();
+      c.strokeStyle = 'rgba(46,229,160,0.85)'; c.lineWidth = 2; c.lineJoin = 'round';
+      c.shadowColor = 'rgba(0,217,139,0.6)'; c.shadowBlur = 12;
+      c.beginPath(); c.moveTo(tops[0][0], tops[0][1]); for (const p of tops) c.lineTo(p[0], p[1]); c.stroke();
+      c.beginPath(); c.moveTo(bots[0][0], bots[0][1]); for (const p of bots) c.lineTo(p[0], p[1]); c.stroke();
+      c.shadowBlur = 0;
+      phase += 0.02 + level * 0.045;
+      raf = requestAnimationFrame(draw);
+    }
+    function setNow(state) {
+      if (!now) return;
+      const v = SET[idx];
+      if (state === 'play') now.innerHTML = '<span class="wn-live">● playing</span> ' + v.flag + ' ' + v.name + ' <span class="wn-line">“' + v.text + '”</span>';
+      else now.innerHTML = '<span class="wn-hint">▸ tap to hear ' + SET.length + ' voices</span>';
+    }
+    const player = createPlayer(baseOf(stage), {
+      clipFor: () => SET[idx].clip,
+      onStart: () => { stage.classList.add('playing'); if (btn) btn.innerHTML = '❚❚&nbsp;&nbsp;Playing…'; setNow('play'); },
+      onStop: (ended) => {
+        stage.classList.remove('playing'); target = 0;
+        if (ended) idx = (idx + 1) % SET.length;
+        if (btn) btn.innerHTML = '▶&nbsp;&nbsp;Hear ' + SET[idx].name;
+        setNow('idle');
+      },
+      onFrame: (freq) => { if (freq) { let s = 0; const u = Math.floor(freq.length * 0.7); for (let i = 0; i < u; i++) s += freq[i]; target = Math.min(2.2, (s / u / 255) * 3.2); } }
+    });
+    if (btn) { btn.addEventListener('click', () => player.toggle()); btn.innerHTML = '▶&nbsp;&nbsp;Hear ' + SET[idx].name; }
+    setNow('idle');
+    resize();
+    window.addEventListener('resize', resize);
+    if (reduce) { level = 0.3; draw(); cancelAnimationFrame(raf); }
+    else draw();
+  })();
+
+  // ── HERO #3 — radial voiceprint orb (plays Heart) ───────────────────────
   (function () {
     const orb = document.querySelector('.orb');
     if (!orb) return;
@@ -150,7 +226,7 @@
     if (cap) cap.innerHTML = idle;
   })();
 
-  // ── HERO #4 — desktop app window ────────────────────────────────────────
+  // ── HERO #4 — desktop app window (plays Heart) ──────────────────────────
   (function () {
     const win = document.querySelector('.appwin');
     if (!win) return;
@@ -163,55 +239,5 @@
       onFrame: (freq, audio) => { if (audio.duration) { if (fill) fill.style.width = (audio.currentTime / audio.duration * 100) + '%'; if (cardTime) cardTime.textContent = fmt(audio.currentTime); } }
     });
     [gen, play].forEach(b => { if (b) { b.style.cursor = 'pointer'; b.addEventListener('click', () => player.toggle()); } });
-  })();
-
-  // ── HERO #2 — full-bleed living waveform ────────────────────────────────
-  (function () {
-    const stage = document.querySelector('.wavehero');
-    if (!stage) return;
-    const canvas = stage.querySelector('.wavehero-canvas'), btn = stage.querySelector('.wavehero-play');
-    const c = canvas.getContext('2d');
-    let W = 0, H = 0, dpr = 1, phase = 0, level = 0, target = 0, raf = 0;
-    function resize() {
-      dpr = Math.min(2, window.devicePixelRatio || 1);
-      W = canvas.clientWidth; H = canvas.clientHeight;
-      canvas.width = Math.max(1, W * dpr); canvas.height = Math.max(1, H * dpr);
-      c.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function wave(mid, ampScale, freqK, ph, alpha, lw) {
-      c.beginPath();
-      for (let x = 0; x <= W; x += 5) {
-        const t = x / W;
-        const taper = Math.sin(t * Math.PI);
-        const base = 0.5 * Math.sin(t * freqK + ph) + 0.32 * Math.sin(t * freqK * 2.3 - ph * 1.4) + 0.18 * Math.sin(t * freqK * 4.1 + ph * 0.7);
-        const y = mid + base * (H * 0.16) * ampScale * taper * (0.5 + level);
-        if (x === 0) c.moveTo(x, y); else c.lineTo(x, y);
-      }
-      c.strokeStyle = 'rgba(0, 217, 139, ' + alpha + ')';
-      c.lineWidth = lw; c.lineJoin = 'round'; c.lineCap = 'round';
-      c.shadowColor = 'rgba(0,217,139,0.6)'; c.shadowBlur = 10;
-      c.stroke(); c.shadowBlur = 0;
-    }
-    function draw() {
-      c.clearRect(0, 0, W, H);
-      const mid = H * 0.52;
-      level += (target - level) * 0.08;
-      wave(mid, 1.0, 7.5, phase, 0.85, 2.2);
-      wave(mid, 0.6, 5.0, -phase * 0.8 + 1.1, 0.4, 1.4);
-      wave(mid, 0.35, 9.5, phase * 1.3 + 2.0, 0.22, 1);
-      phase += 0.015 + level * 0.03;
-      raf = requestAnimationFrame(draw);
-    }
-    const player = createPlayer(baseOf(stage), {
-      clipFor: () => 'hero-heart.mp3',
-      onStart: () => { stage.classList.add('playing'); if (btn) btn.innerHTML = '❚❚&nbsp;&nbsp;Playing'; },
-      onStop: () => { stage.classList.remove('playing'); target = 0; if (btn) btn.innerHTML = '▶&nbsp;&nbsp;Hear a voice'; },
-      onFrame: (freq) => { if (freq) { let s = 0; const u = Math.floor(freq.length * 0.7); for (let i = 0; i < u; i++) s += freq[i]; target = Math.min(2.2, (s / u / 255) * 3.2); } }
-    });
-    if (btn) { btn.addEventListener('click', () => player.toggle()); }
-    resize();
-    window.addEventListener('resize', resize);
-    if (reduce) { level = 0.3; draw(); cancelAnimationFrame(raf); }
-    else draw();
   })();
 })();
