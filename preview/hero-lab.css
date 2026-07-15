@@ -244,6 +244,54 @@
 }
 .orb-cap .on { color: var(--accent); }
 
+/* ─── Click-to-play state hooks ─────────────────────────────────────────── */
+.orb.reacting .orb-ring i { animation: none !important; }
+.appwin.playing .appwin-progress-fill { animation: none; }
+.tts-generate:hover { filter: brightness(1.1); }
+.aw-play:hover, .aw-primary:hover { filter: brightness(1.08); }
+.orb::after {   /* faint tap hint ring */
+  content: ""; position: absolute; inset: 4%; border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 217, 139, 0.14); pointer-events: none;
+}
+
+/* ═══ HERO #2 — full-bleed living waveform ══════════════════════════════════ */
+.wavehero {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(420px, 62vh, 560px);
+  display: flex;
+  align-items: center;
+}
+.wavehero-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; opacity: 0.92; pointer-events: none;
+}
+.wavehero::after {   /* legibility scrim behind the copy */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 72% 82% at 28% 46%, rgba(13, 13, 13, 0.88) 0%, rgba(13, 13, 13, 0.5) 46%, transparent 76%);
+}
+.wavehero .container { position: relative; z-index: 2; }
+.wavehero-copy { max-width: 640px; }
+.wavehero-copy h1 {
+  font-size: clamp(32px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.025em;
+  font-weight: 700; color: var(--txt); margin-bottom: 20px;
+}
+.wavehero .hero-cta { margin-bottom: 12px; }
+.wavehero-play {
+  display: inline-flex; align-items: center; cursor: pointer;
+  padding: 13px 22px;
+  background: linear-gradient(180deg, #0ee39a, #00c97e); color: #062018;
+  border: 1px solid rgba(0, 200, 130, 0.6); border-radius: 6px;
+  font: 600 15px var(--font-sans);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 22px rgba(0, 217, 139, 0.3);
+  transition: filter 0.15s, box-shadow 0.15s;
+}
+.wavehero-play:hover {
+  filter: brightness(1.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 0 34px rgba(0, 217, 139, 0.6);
+}
+@media (max-width: 620px) { .wavehero { min-height: clamp(380px, 72vh, 520px); } }
+
 /* ═══ Comparison page framing (heroes.html) ═════════════════════════════════ */
 .herolab-note {
   max-width: 720px; margin: 0 auto 8px; text-align: center;
