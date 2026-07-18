@@ -180,11 +180,15 @@
       </div>
 
       <div class="hero-visual" aria-hidden="true">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+        <div class="spectrum">
+          <span style="--h:52%;--d:0.0s"></span><span style="--h:59%;--d:0.09s"></span><span style="--h:70%;--d:0.18s"></span><span style="--h:75%;--d:0.27s"></span>
+          <span style="--h:71%;--d:0.36s"></span><span style="--h:72%;--d:0.45s"></span><span style="--h:89%;--d:0.54s"></span><span style="--h:100%;--d:0.63s"></span>
+          <span style="--h:92%;--d:0.72s"></span><span style="--h:62%;--d:0.81s"></span><span style="--h:41%;--d:0.9s"></span><span style="--h:44%;--d:0.99s"></span>
+          <span style="--h:56%;--d:1.08s"></span><span style="--h:62%;--d:1.17s"></span><span style="--h:68%;--d:0.04s"></span><span style="--h:83%;--d:0.13s"></span>
+          <span style="--h:98%;--d:0.22s"></span><span style="--h:94%;--d:0.31s"></span><span style="--h:76%;--d:0.4s"></span><span style="--h:70%;--d:0.49s"></span>
+          <span style="--h:88%;--d:0.58s"></span><span style="--h:100%;--d:0.67s"></span><span style="--h:100%;--d:0.76s"></span><span style="--h:90%;--d:0.85s"></span>
+          <span style="--h:72%;--d:0.94s"></span><span style="--h:57%;--d:1.03s"></span><span style="--h:34%;--d:1.12s"></span><span style="--h:14%;--d:1.21s"></span>
+        </div>
       </div>
     </div>
   </section>
@@ -197,7 +201,23 @@
         VoxWild: <span class="hl">$0</span>, <span class="hl">$12/mo</span>, or <span class="hl">$89 once</span>.<br />
         <span class="low">You pick the plan.</span>
       </div>
-      <p class="wedge-foot">
+
+      <div class="costchart" style="max-width: 620px; margin-top: 36px;">
+        <div class="costchart-head">What 3 years actually costs — <b>total spend</b></div>
+        <div class="costbar-row">
+          <span class="costbar-name">ElevenLabs</span>
+          <div class="costbar-track"><div class="costbar them" style="--w:100%"></div></div>
+          <span class="costbar-val"><span data-count="792" data-prefix="$">$792</span></span>
+        </div>
+        <div class="costbar-row me">
+          <span class="costbar-name">VoxWild Lifetime</span>
+          <div class="costbar-track"><div class="costbar me" style="--w:11%"></div></div>
+          <span class="costbar-val"><span data-count="89" data-prefix="$">$89</span></span>
+        </div>
+        <div class="costchart-foot">$22/mo × 36 months, versus one $89 payment. Competitor price checked July 2026.</div>
+      </div>
+
+      <p class="wedge-foot" style="margin-top: 28px;">
         <a href="/pricing">See the full comparison →</a>
       </p>
     </div>
@@ -535,6 +555,9 @@
       resize();
     })();
   </script>
+
+  <!-- ─── Scroll reveal + animated cost chart ─────────────────────────────── -->
+  <script src="enhance.js"></script>
 
   <!-- ─── Version badge: always show the latest GitHub release ────────────── -->
   <script>

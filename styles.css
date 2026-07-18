@@ -28,9 +28,12 @@
 
     body {
       background:
-        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(0, 217, 139, 0.09) 0%, transparent 65%),
+        radial-gradient(rgba(240, 236, 228, 0.022) 1px, transparent 1.5px),
+        radial-gradient(ellipse 80% 50% at 50% -5%, rgba(0, 217, 139, 0.10) 0%, transparent 65%),
+        radial-gradient(ellipse 52% 42% at 86% 9%, rgba(0, 217, 139, 0.05) 0%, transparent 60%),
         radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0, 217, 139, 0.05) 0%, transparent 60%),
         var(--bg);
+      background-size: 34px 34px, auto, auto, auto, auto;
       background-attachment: fixed;
       color: var(--txt);
       font-family: var(--font-sans);
@@ -272,7 +275,7 @@
       display: grid;
       grid-template-columns: 1.3fr 1fr;
       gap: 48px;
-      align-items: center;
+      align-items: start;   /* top-align so the spectrum rises next to the headline */
     }
     @media (max-width: 720px) {
       .hero-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -343,45 +346,64 @@
       .hero-cta .btn { width: 100%; justify-content: center; }
     }
 
-    /* Hero right — breathing bar equalizer (decorative) */
+    /* Hero right — live audio spectrum with mirror reflection (decorative) */
     .hero-visual {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: clamp(8px, 1vw, 14px);
-      height: clamp(140px, 22vw, 260px);
+      min-height: clamp(150px, 22vw, 250px);
+      padding-top: 10px;   /* optical alignment with the headline block */
     }
-    .hero-visual .bar {
+    .spectrum {
       position: relative;
-      width: clamp(10px, 1.6vw, 18px);
-      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 50%, #00a36a 100%);
-      border-radius: 3px;
-      animation: bar-breathe 3.2s ease-in-out infinite;
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.45),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.25),
-        0 0 30px rgba(0, 217, 139, 0.45),
-        0 4px 16px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: clamp(2px, 0.55vw, 5px);
+      width: 100%;
+      max-width: 420px;
+      height: clamp(112px, 17vw, 184px);
+      -webkit-box-reflect: below 2px linear-gradient(rgba(0, 0, 0, 0.22), transparent 42%);
     }
-    .hero-visual .bar::before {
+    /* Lit "floor" the bars stand on — gives the spectrum a defined bottom edge
+       instead of bleeding into the hero. The reflection mirrors off this line. */
+    .spectrum::after {
       content: "";
       position: absolute;
-      top: 6%;
-      left: 22%;
-      right: 22%;
-      height: 28%;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
-      border-radius: 1px;
-      filter: blur(0.5px);
+      left: 4%; right: 4%;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 217, 139, 0.6) 25%, rgba(46, 229, 160, 0.85) 50%, rgba(0, 217, 139, 0.6) 75%, transparent);
+      box-shadow: 0 0 14px rgba(0, 217, 139, 0.5);
     }
-    .hero-visual .bar:nth-child(1) { height: 34%; animation-delay: 0.0s;  }
-    .hero-visual .bar:nth-child(2) { height: 62%; animation-delay: 0.25s; }
-    .hero-visual .bar:nth-child(3) { height: 92%; animation-delay: 0.5s;  }
-    .hero-visual .bar:nth-child(4) { height: 54%; animation-delay: 0.75s; }
-    .hero-visual .bar:nth-child(5) { height: 26%; animation-delay: 1.0s;  }
-    @keyframes bar-breathe {
-      0%, 100% { transform: scaleY(0.88); opacity: 0.85; }
-      50%      { transform: scaleY(1.12); opacity: 1; }
+    .spectrum span {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 13px;
+      height: var(--h, 60%);
+      border-radius: 2px 2px 1px 1px;
+      background: linear-gradient(180deg, #2ee5a0 0%, #00d98b 55%, #00a36a 100%);
+      transform-origin: bottom;
+      animation: spectrum-pulse 2.4s ease-in-out infinite;
+      animation-delay: var(--d, 0s);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 12px rgba(0, 217, 139, 0.30);
+    }
+    @keyframes spectrum-pulse {
+      0%, 100% { transform: scaleY(0.42); opacity: 0.7; }
+      50%      { transform: scaleY(1);    opacity: 1;   }
+    }
+    @media (max-width: 720px) {
+      .hero-visual { min-height: 176px; padding-top: 0; }
+      .spectrum { max-width: 460px; height: 158px; gap: 5px; }
+      .spectrum span { max-width: 18px; }
+    }
+    @media (max-width: 480px) {
+      .spectrum { height: 132px; gap: 4px; }
+      .spectrum span { max-width: 22px; }
+      /* Halve the bar count on phones so they breathe instead of smooshing */
+      .spectrum span:nth-child(even) { display: none; }
     }
 
     /* ─── Listen (demo clips) ─────────────────────────────────────────────── */
@@ -453,21 +475,42 @@
         0 0 24px rgba(0, 217, 139, 0.5);
     }
     .clip-btn svg { width: 14px; height: 14px; display: block; }
-    .clip-track { flex: 1; min-width: 0; cursor: pointer; padding: 8px 0; }
-    .clip-rail {
+    /* Waveform scrubber — built by player.js (base row + emerald fill row) */
+    .clip-wave {
       position: relative;
-      height: 4px;
+      flex: 1;
+      min-width: 0;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+    .clip-wave .wv {
+      flex: 1 1 0;
+      min-width: 0;
+      height: var(--wh, 40%);
       background: var(--elev);
-      border-radius: 2px;
-      overflow: hidden;
+      border-radius: 1px;
     }
-    .clip-fill {
+    .clip-wave .wv-fill {
       position: absolute;
-      top: 0; bottom: 0; left: 0;
-      width: 0%;
-      background: linear-gradient(90deg, #00a36a, var(--accent));
-      border-radius: 2px;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      pointer-events: none;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.08s linear;
     }
+    .clip-wave .wv-fill .wv {
+      background: linear-gradient(180deg, #2ee5a0, #00a36a);
+      box-shadow: 0 0 6px rgba(0, 217, 139, 0.45);
+    }
+    /* Fallback bar (shown only if the waveform can't be built) */
+    .clip-track { flex: 1; min-width: 0; cursor: pointer; padding: 8px 0; }
+    .clip-rail { position: relative; height: 4px; background: var(--elev); border-radius: 2px; overflow: hidden; }
+    .clip-fill { position: absolute; top: 0; bottom: 0; left: 0; width: 0%; background: linear-gradient(90deg, #00a36a, var(--accent)); border-radius: 2px; }
     .clip-time {
       flex: none;
       font-family: var(--font-mono);
@@ -958,6 +1001,124 @@
     .section-head { margin-bottom: 48px; }
     .section-head p { color: var(--txt2); font-size: 17px; max-width: 56ch; margin-top: 12px; }
 
+    /* ─── Hover glow on cards ─────────────────────────────────────────────── */
+    .clip { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
+    .clip:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 217, 139, 0.45);
+      box-shadow: 0 10px 34px rgba(0, 0, 0, 0.4), 0 0 26px rgba(0, 217, 139, 0.14);
+    }
+    .clip.pending:hover { transform: none; box-shadow: none; border-color: var(--border); }
+    .engine { transition: box-shadow 0.25s ease; }
+    .engine:hover { box-shadow: inset 0 0 70px rgba(0, 217, 139, 0.06); }
+    .buy-strip > div { transition: box-shadow 0.2s ease; }
+    .buy-strip > div:hover { box-shadow: inset 0 0 55px rgba(0, 217, 139, 0.055); }
+    table.compare tbody tr { transition: background 0.15s ease; }
+    table.compare tbody tr:hover td { background: rgba(0, 217, 139, 0.05); }
+    table.compare tbody tr:hover td.me { background: rgba(0, 217, 139, 0.13); }
+
+    /* ─── Scroll reveal (activated by enhance.js adding .js-reveal) ────────── */
+    .js-reveal .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      will-change: opacity, transform;
+    }
+    .js-reveal .reveal.in { opacity: 1; transform: none; }
+
+    /* ─── Cost chart (animated on scroll-in) ──────────────────────────────── */
+    .costchart {
+      margin: 8px 0 48px;
+      padding: 26px 28px 22px;
+      background: linear-gradient(180deg, #1a1a1a 0%, #141414 100%);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 8px 28px rgba(0, 0, 0, 0.4);
+    }
+    .costchart-head {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--txt3);
+      margin-bottom: 20px;
+    }
+    .costchart-head b { color: var(--txt); font-weight: 600; }
+    .costbar-row {
+      display: grid;
+      grid-template-columns: 132px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+    }
+    .costbar-name { font-family: var(--font-mono); font-size: 12.5px; color: var(--txt2); }
+    .costbar-track {
+      position: relative;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .costbar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: var(--w);              /* shown by default (no-JS fallback) */
+      border-radius: 3px;
+      transition: width 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .js-reveal .costbar { width: 0; }               /* JS present → start empty */
+    .js-reveal .costchart.in .costbar { width: var(--w); }  /* …grow on scroll-in */
+    .costbar.them { background: linear-gradient(90deg, rgba(248, 113, 113, 0.32), rgba(248, 113, 113, 0.68)); }
+    .costbar.me {
+      background: linear-gradient(90deg, #00a36a, #2ee5a0);
+      box-shadow: 0 0 16px rgba(0, 217, 139, 0.4);
+    }
+    .costbar-val {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--txt);
+      font-variant-numeric: tabular-nums;
+      min-width: 60px;
+      text-align: right;
+    }
+    .costbar-row.me .costbar-name,
+    .costbar-row.me .costbar-val { color: var(--accent); }
+    .costchart-foot {
+      margin-top: 18px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--txt3);
+    }
+    @media (max-width: 560px) {
+      .costbar-row { grid-template-columns: 92px 1fr auto; gap: 10px; }
+      .costbar-name { font-size: 11px; }
+      .costbar-val { min-width: 52px; font-size: 12px; }
+    }
+
+    /* ─── Engine wave signatures ──────────────────────────────────────────── */
+    .engine-sig {
+      display: block;
+      width: 100%;
+      height: 40px;
+      margin: -4px 0 20px;
+      opacity: 0.6;
+      animation: sig-bob 6s ease-in-out infinite;
+    }
+    .engine-sig.slow { animation-duration: 9s; opacity: 0.75; }
+    .engine-sig path {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 5px rgba(0, 217, 139, 0.5));
+      vector-effect: non-scaling-stroke;
+    }
+    @keyframes sig-bob {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-3px); }
+    }
+
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -966,4 +1127,7 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
+      .spectrum span { animation: none !important; transform: none !important; opacity: 0.92; }
+      .engine-sig    { animation: none !important; transform: none !important; }
+      .js-reveal .reveal { opacity: 1 !important; transform: none !important; }
     }
