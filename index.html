@@ -135,6 +135,7 @@
   </script>
 
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="hero-lab.css" />
 </head>
 <body>
 
@@ -156,39 +157,75 @@
   </nav>
 
   <!-- ─── HERO ────────────────────────────────────────────────────────────── -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
+  <section class="hero hero-app">
+    <div class="container">
+      <div class="hero-app-copy">
         <h1>
-          Offline text-to-speech<br />
-          that doesn't sound like<br />
-          <span class="strike">a robot</span>.
+          A recording studio that<br />
+          runs on your laptop.
         </h1>
-
         <p class="hero-sub">
-          A Windows desktop app for AI text-to-speech with 13 built-in voices, voice cloning from a 6-second sample, AI audio enhancement, and queue-based batch generation. Runs 100% offline — no cloud, no account, no character caps. Fast mode is <strong>free forever</strong>. Pro unlocks everything — <strong>$12/mo</strong> or <strong>$89 once</strong>, your call.
+          A real Windows desktop app — 13 voices, 6-second voice cloning, AI enhancement, and a batch queue. Runs 100% offline: no cloud, no account, no character caps. Fast mode is <strong>free forever</strong>; Pro is <strong>$12/mo</strong> or <strong>$89 once</strong>.
         </p>
-
         <div class="hero-cta">
           <a href="/download" class="btn btn-lg">Download for Windows</a>
           <a href="/listen" class="btn-text">Hear the voices first →</a>
         </div>
-
         <p class="hero-meta mono">
           VoxWild-Setup.exe · ~377 MB · Windows 10/11 · <span class="app-version">v1.3.4</span>
         </p>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <div class="spectrum">
-          <span style="--h:52%;--d:0.0s"></span><span style="--h:59%;--d:0.09s"></span><span style="--h:70%;--d:0.18s"></span><span style="--h:75%;--d:0.27s"></span>
-          <span style="--h:71%;--d:0.36s"></span><span style="--h:72%;--d:0.45s"></span><span style="--h:89%;--d:0.54s"></span><span style="--h:100%;--d:0.63s"></span>
-          <span style="--h:92%;--d:0.72s"></span><span style="--h:62%;--d:0.81s"></span><span style="--h:41%;--d:0.9s"></span><span style="--h:44%;--d:0.99s"></span>
-          <span style="--h:56%;--d:1.08s"></span><span style="--h:62%;--d:1.17s"></span><span style="--h:68%;--d:0.04s"></span><span style="--h:83%;--d:0.13s"></span>
-          <span style="--h:98%;--d:0.22s"></span><span style="--h:94%;--d:0.31s"></span><span style="--h:76%;--d:0.4s"></span><span style="--h:70%;--d:0.49s"></span>
-          <span style="--h:88%;--d:0.58s"></span><span style="--h:100%;--d:0.67s"></span><span style="--h:100%;--d:0.76s"></span><span style="--h:90%;--d:0.85s"></span>
-          <span style="--h:72%;--d:0.94s"></span><span style="--h:57%;--d:1.03s"></span><span style="--h:34%;--d:1.12s"></span><span style="--h:14%;--d:1.21s"></span>
+      <div class="appwin" data-audiobase="audio/">
+        <div class="appwin-title">
+          <span class="appwin-logo"></span>
+          <span class="appwin-name">VoxWild <span class="appwin-ver">v1.3.4</span></span>
+          <span class="appwin-tools"><i></i><i></i><i></i></span>
         </div>
+
+        <div class="appwin-action">
+          <span class="spacer"></span>
+          <button class="aw-btn aw-ghost aw-dim">Stop</button>
+          <button class="aw-btn aw-ghost">Preview</button>
+          <button class="aw-btn aw-primary">Generate</button>
+        </div>
+
+        <div class="appwin-progress"><div class="appwin-progress-fill"></div></div>
+
+        <div class="appwin-tabs">
+          <span class="aw-tab aw-tab-on">Studio</span>
+          <span class="aw-tab">Queue</span>
+          <span class="aw-tab">Dialogue</span>
+          <span class="aw-tab">Profiles</span>
+        </div>
+
+        <div class="appwin-body">
+          <div class="aw-panel aw-text">
+            <div class="aw-label">Text input</div>
+            <div class="aw-textbox"><span class="aw-typed">Type what you want to say, and I'll say it. First take, every time — no second takes.</span></div>
+            <div class="aw-counter">Words: 17 · Chars: 85 · Audio: ~6s · Processing: ~1s</div>
+          </div>
+
+          <div class="aw-panel aw-engine">
+            <div class="aw-label">Engine</div>
+            <div class="aw-seg"><span class="aw-seg-on">Fast</span><span>Natural</span></div>
+            <div class="aw-label">Voice</div>
+            <div class="aw-select"><span>🇺🇸 Female - Heart (Best)</span><span class="aw-chev">▾</span></div>
+            <div class="aw-label">Speed</div>
+            <div class="aw-slider"><span class="aw-slider-fill"></span><span class="aw-knob"></span><b>0.85</b></div>
+          </div>
+
+          <div class="aw-panel aw-history">
+            <div class="aw-label">History <span class="aw-dim2">last 10</span></div>
+            <div class="aw-card">
+              <div class="aw-card-voice">🇺🇸 Female - Heart</div>
+              <div class="aw-card-text">"Type what you want to say, and I'll say it."</div>
+              <div class="aw-card-row"><button class="aw-play">▶ Play</button><span class="aw-card-time">0:06</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="appwin-status">Ready · Ctrl+Enter to generate · Ctrl+P to play · Esc to stop</div>
       </div>
     </div>
   </section>
@@ -558,6 +595,7 @@
 
   <!-- ─── Scroll reveal + animated cost chart ─────────────────────────────── -->
   <script src="enhance.js"></script>
+  <script src="hero-lab.js"></script>
 
   <!-- ─── Version badge: always show the latest GitHub release ────────────── -->
   <script>
