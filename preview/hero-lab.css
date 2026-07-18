@@ -81,7 +81,7 @@
 }
 .hero-app .hero-sub { max-width: 60ch; margin-left: auto; margin-right: auto; }
 .hero-app .hero-cta { justify-content: center; }
-.hero-app .hero-meta { text-align: center; word-break: normal; overflow-wrap: anywhere; }
+.hero-app .hero-meta { max-width: none; text-align: center; word-break: normal; overflow-wrap: anywhere; }
 
 .appwin {
   width: 100%; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
