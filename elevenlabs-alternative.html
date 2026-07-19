@@ -179,6 +179,31 @@
         </table>
       </div>
 
+      <div class="costchart">
+        <div class="costchart-head">3 years of use — <b>total spend</b></div>
+        <div class="costbar-row me">
+          <span class="costbar-name">VoxWild Free</span>
+          <div class="costbar-track"><div class="costbar me" style="--w:0%"></div></div>
+          <span class="costbar-val"><span data-count="0" data-prefix="$">$0</span></span>
+        </div>
+        <div class="costbar-row me">
+          <span class="costbar-name">VoxWild Lifetime</span>
+          <div class="costbar-track"><div class="costbar me" style="--w:11%"></div></div>
+          <span class="costbar-val"><span data-count="89" data-prefix="$">$89</span></span>
+        </div>
+        <div class="costbar-row">
+          <span class="costbar-name">ElevenLabs Starter</span>
+          <div class="costbar-track"><div class="costbar them" style="--w:27%"></div></div>
+          <span class="costbar-val"><span data-count="216" data-prefix="$">$216</span></span>
+        </div>
+        <div class="costbar-row">
+          <span class="costbar-name">ElevenLabs Creator</span>
+          <div class="costbar-track"><div class="costbar them" style="--w:100%"></div></div>
+          <span class="costbar-val"><span data-count="792" data-prefix="$">$792</span></span>
+        </div>
+        <div class="costchart-foot">36 months at each plan's monthly price, versus one $89 payment.</div>
+      </div>
+
       <p class="wedge-foot">
         ElevenLabs prices checked July 2026 from their public pricing page — they may change.
         <a href="/pricing">Full VoxWild pricing, including Murf and PlayHT →</a>
@@ -210,7 +235,7 @@
             <button class="clip-btn" aria-label="Play sample">
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
             </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-wave" role="presentation"></div>
             <div class="clip-time">0:00</div>
           </div>
           <div class="clip-soon">clip coming soon</div>
@@ -224,7 +249,7 @@
             <button class="clip-btn" aria-label="Play sample">
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
             </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-wave" role="presentation"></div>
             <div class="clip-time">0:00</div>
           </div>
           <div class="clip-soon">clip coming soon</div>
@@ -238,7 +263,7 @@
             <button class="clip-btn" aria-label="Play sample">
               <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
             </button>
-            <div class="clip-track"><div class="clip-rail"><div class="clip-fill"></div></div></div>
+            <div class="clip-wave" role="presentation"></div>
             <div class="clip-time">0:00</div>
           </div>
           <div class="clip-soon">clip coming soon</div>
@@ -307,6 +332,7 @@
   </footer>
 
   <script src="player.js"></script>
+  <script src="enhance.js"></script>
   <script data-goatcounter="https://voxwild.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </body>
